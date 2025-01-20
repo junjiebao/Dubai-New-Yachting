@@ -48,37 +48,217 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    /* 移动端导航栏样式 */
+    .mobile-nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      padding: 0.5rem;
+      cursor: pointer;
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      z-index: 1000;
+    }
+
+    @media screen and (max-width: 768px) {
+      .mobile-nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.9);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links li {
+        margin: 1rem 0;
+      }
+
+      .nav-links a {
+        color: white;
+        font-size: 1.2rem;
+      }
+
+      /* 移动端布局优化 */
+      .hero h1 {
+        font-size: 2rem;
+        padding: 0 1rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+        padding: 0 1rem;
+      }
+
+      .yacht-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+      }
+
+      .rent-options {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem;
+      }
+
+      .rental-option {
+        margin: 0.5rem;
+        padding: 1rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+
+      .rental-option img {
+        width: 100%;
+        height: auto;
+        max-height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      .rental-option h3 {
+        font-size: 1.2rem;
+        margin: 0.8rem 0;
+      }
+
+      .specs {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+        font-size: 0.9rem;
+      }
+
+      .specs p {
+        margin: 0.3rem 0;
+      }
+
+      .description {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin: 0.8rem 0;
+      }
+
+      .pricing {
+        font-size: 0.9rem;
+        font-weight: bold;
+        margin-top: 0.8rem;
+      }
+
+      .pricing p {
+        margin: 0.3rem 0;
+      }
+
+      .contact-info {
+        padding: 1rem;
+        flex-direction: column;
+      }
+
+      .contact-info > div {
+        margin: 0.5rem 0;
+      }
+    }
+
+    /* 添加平板设备的优化 */
+    @media screen and (min-width: 769px) and (max-width: 1024px) {
+      .rental-option img {
+        max-height: 250px;
+      }
+      
+      .rent-options {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* 悬浮联系方式样式 */
+    .floating-contact {
+      position: fixed;
+      bottom: 50%; /* 垂直居中 */
+      right: 20px; /* 距离右边20px */
+      transform: translateY(50%); /* 使其垂直居中 */
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 1000;
+    }
+
+    .floating-contact a {
+      background-color: #25D366; /* WhatsApp 颜色 */
+      color: white;
+      border-radius: 50%;
+      padding: 15px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      font-size: 24px;
+      transition: background-color 0.3s;
+    }
+
+    .floating-contact a:hover {
+      background-color: #128C7E; /* WhatsApp hover 颜色 */
+    }
+
+    .wechat {
+      background-color: #7BB32A; /* 微信颜色 */
+    }
+
+    .wechat:hover {
+      background-color: #5B9B1A; /* 微信 hover 颜色 */
+    }
+
+    .logo {
+      font-size: 4rem; /* 调整字体大小 */
+      font-weight: bold; /* 加粗字体 */
+      color: #fff; /* 字体颜色 */
+      margin: 0; /* 可选：去掉默认的外边距 */
+    }
+  </style>
 </head>
 <body>
 <header>
 <nav>
   <div class="logo">迪拜新游艇 New Yachting LLC</div>
+  <button class="mobile-nav-toggle">
+    <i class="fas fa-bars"></i>
+  </button>
   <ul class="nav-links">
-    <li><a href="#buy">游艇买卖</a></li>
-    <li><a href="#rent">游艇租赁</a></li>
-    <li><a href="#build">游艇新建</a></li>
+    <li><a href="#buy">购买</a></li>
+    <li><a href="#rent">租赁</a></li>
+    <li><a href="#build">新建</a></li>
     <li><a href="#contact">联系我们</a></li>
   </ul>
 </nav>
-  <div class="hero">
-    <h1>探索海洋生活的无限可能</h1>
-    <p>您的专属游艇体验从这里开始</p>
-  </div>
+  
 </header>
 
   <section id="buy" class="section">
-    <h2>游艇购买</h2>
+    <h2>购买：</h2>
+    <h4>我们在全世界市场协助您找到诚心如意的游艇</h4>
     <div class="yacht-grid">
-      <!-- 游艇列表将通过JavaScript动态加载 -->
+      
     </div>
   </section>
 
   <section id="rent" class="section">
-    <h2>游艇租赁</h2>
+    <h2>租赁：</h2>
+    <h4>迪拜港口游艇租赁选择</h4>
     <div class="rent-options">
       <div class="rental-option">
         <img src="images/Smith Yacht.webp" alt="Mr. & Mrs. Smith Yacht">
-        <h3>Mr. & Mrs. Smith - 98ft Yacht</h3>
+        <h3>迪拜港口 Mr. & Mrs. Smith - 98ft Yacht</h3>
         <div class="specs">
           <p><strong>Size:</strong> 98ft</p>
           <p><strong>Cabins:</strong> 4</p>
@@ -88,14 +268,14 @@
         </div>
         <p class="description">The 98-foot Mr. & Mrs. Smith by Horizon Yachts is crafted for an exceptional charter experience...</p>
         <div class="pricing">
-          <p><strong>Per Hour:</strong> AED 4,000</p>
+          <p><strong>报价:</strong> AED 4,000</p>
           <p><strong>24 Hours:</strong> AED 40,000</p>
         </div>
       </div>
 
       <div class="rental-option">
         <img src="images/Icon.webp" alt="Icon Yacht">
-        <h3>Icon - 110ft Yacht</h3>
+        <h3>迪拜港口 Icon - 110ft Yacht</h3>
         <div class="specs">
           <p><strong>Size:</strong> 110ft</p>
           <p><strong>Cabins:</strong> 4</p>
@@ -105,14 +285,14 @@
         </div>
         <p class="description">The 110-foot Icon, from Gulf Craft's prestigious Majesty series, is a marvel of luxury and design...</p>
         <div class="pricing">
-          <p><strong>Per Hour:</strong> AED 5,000</p>
+          <p><strong>报价:</strong> AED 5,000</p>
           <p><strong>24 Hours:</strong> AED 50,000</p>
         </div>
       </div>
 
       <div class="rental-option">
         <img src="images/Stardom.webp" alt="Stardom Yacht">
-        <h3>Stardom - 140ft Super Yacht</h3>
+        <h3>迪拜港口 Stardom - 140ft Super Yacht</h3>
         <div class="specs">
           <p><strong>Size:</strong> 140ft</p>
           <p><strong>Cabins:</strong> 5</p>
@@ -122,14 +302,14 @@
         </div>
         <p class="description">The 140-foot Stardom redefines luxury with its tri-deck design and exquisite craftsmanship...</p>
         <div class="pricing">
-          <p><strong>Per Hour:</strong> AED 10,000</p>
+          <p><strong>报价:</strong> AED 10,000</p>
           <p><strong>24 Hours:</strong> AED 100,000</p>
         </div>
       </div>
 
       <div class="rental-option">
         <img src="images/Encore.webp" alt="Encore Yacht">
-        <h3>Encore - 131ft Super Yacht</h3>
+        <h3>迪拜港口 Encore - 131ft Super Yacht</h3>
         <div class="specs">
           <p><strong>Size:</strong> 131ft</p>
           <p><strong>Cabins:</strong> 5</p>
@@ -139,13 +319,13 @@
         </div>
         <p class="description">The 131-foot Encore, crafted by Sunseeker, combines cutting-edge design with world-class luxury...</p>
         <div class="pricing">
-          <p><strong>Per Hour:</strong> AED 12,500</p>
+          <p><strong>报价:</strong> AED 12,500</p>
           <p><strong>24 Hours:</strong> AED 125,000</p>
         </div>
       </div>
 
       <div class="rental-option">
-        <h3>Behike - 150ft Super Yacht</h3>
+        <h3>迪拜港口 Behike - 150ft Super Yacht</h3>
         <div class="specs">
           <p><strong>Size:</strong> 150ft</p>
           <p><strong>Cabins:</strong> 5</p>
@@ -155,7 +335,7 @@
         </div>
         <p class="description">The 150-foot Behike from CRN delivers a premier yachting experience with a perfect blend of elegance and modernity...</p>
         <div class="pricing">
-          <p><strong>Per Hour:</strong> AED 15,000</p>
+          <p><strong>报价:</strong> AED 15,000</p>
           <p><strong>24 Hours:</strong> AED 150,000</p>
         </div>
       </div>
@@ -163,7 +343,8 @@
   </section>
 
   <section id="build" class="section">
-    <h2>游艇新建</h2>
+    <h2>新建：</h2>
+    <h4>联系我们了解您的游艇使用和设计需求</h4>
     <form id="custom-yacht-form">
       <!-- 自定义游艇表单 -->
     </form>
@@ -190,8 +371,47 @@
           United Arab Emirates
       </div>
     </section>
-    <p>&copy; 2025 迪拜新游艇 New Yachting. All rights reserved.</p>
+    <p>&copy; 2022-2025 迪拜新游艇 New Yachting. All rights reserved.</p>
   </footer>
 
+  <div class="floating-contact">
+    <a href="https://wa.me/971561018837" target="_blank" title="联系我 via WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="javascript:void(0);" class="wechat" title="联系我 via 微信" onclick="copyAndRedirect()">
+      <i class="fab fa-weixin"></i>
+    </a>
+  </div>
+
   <script src="script.js"></script>
+  <script>
+    function copyAndRedirect() {
+      const weChatID = "joeybaojunjie"; // 微信ID
+      navigator.clipboard.writeText(weChatID).then(() => {
+        alert("微信ID已复制: " + weChatID);
+        // 跳转到微信聊天
+        window.location.href = "weixin://dl/chat?Joeybaojunjie";
+      }).catch(err => {
+        console.error("复制失败: ", err);
+      });
+    }
+
+    // 添加移动端导航菜单切换功能
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+      const navLinks = document.querySelector('.nav-links');
+      
+      mobileNavToggle.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+      });
+
+      // 点击导航链接后关闭菜单
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('active');
+        });
+      });
+    });
+  </script>
+</body>
 </html>

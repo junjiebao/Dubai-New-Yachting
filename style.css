@@ -307,17 +307,87 @@ footer {
   margin-top: 2rem;
 }
 
+/* 移动端优化 */
 @media (max-width: 768px) {
+  /* 导航栏优化 */
   .nav-links {
     flex-direction: column;
     align-items: center;
+    gap: 1rem;
   }
-  
+
+  /* 标题优化 */
   .hero h1 {
     font-size: 2rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
   }
-  
+
+  .hero p {
+    font-size: 1.2rem;
+  }
+
+  /* 内容区域优化 */
   .section {
     padding: 2rem 1rem;
+  }
+
+  /* 游艇卡片优化 */
+  .yacht-card, .rental-option {
+    margin: 1rem 0;
+    padding: 1rem;
+  }
+
+  /* 图片优化 */
+  .yacht-card img {
+    height: 150px;
+  }
+
+  /* 表单优化 */
+  #custom-yacht-form {
+    padding: 1.5rem;
+  }
+
+  /* 联系方式优化 */
+  .contact-info {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* 按钮优化 */
+  .btn {
+    width: 100%;
+    padding: 1rem;
+    margin: 0.5rem 0;
+  }
+
+  /* 页脚优化 */
+  footer {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* 小屏幕优化 */
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .yacht-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rent-options {
+    flex-direction: column;
+  }
+
+  .contact-info div {
+    font-size: 0.9rem;
+    padding: 0.8rem;
   }
 }

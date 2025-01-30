@@ -225,6 +225,32 @@
       color: #fff; /* 字体颜色 */
       margin: 0; /* 可选：去掉默认的外边距 */
     }
+
+    .rent-options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 每行三个 */
+      gap: 1rem; /* 列间距 */
+      padding: 1rem;
+    }
+
+    .rental-option {
+      margin: 0.5rem;
+      padding: 1rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .rental-option img {
+      width: 100%;
+      height: auto;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .rental-option h3 {
+      font-size: 1.2rem;
+      margin: 0.8rem 0;
+    }
   </style>
 </head>
 <body>
@@ -248,7 +274,7 @@
     <h2>购买：</h2>
     <h4>我们在全世界市场协助您找到诚心如意的游艇</h4>
     <div class="yacht-grid">
-      
+      <!-- 这里不需要空的 yacht-card div -->
     </div>
   </section>
 
@@ -256,88 +282,645 @@
     <h2>租赁：</h2>
     <h4>迪拜港口游艇租赁选择</h4>
     <div class="rent-options">
+      <!-- 1. Santorini -->
       <div class="rental-option">
-        <img src="images/Smith Yacht.webp" alt="Mr. & Mrs. Smith Yacht">
-        <h3>迪拜港口 Mr. & Mrs. Smith - 98ft Yacht</h3>
+        <img src="images\Santorini.webp" alt="Santorini Yacht">
+        <h3>115 Santorini</h3>
         <div class="specs">
-          <p><strong>Size:</strong> 98ft</p>
-          <p><strong>Cabins:</strong> 4</p>
-          <p><strong>Crew:</strong> 3</p>
-          <p><strong>Capacity:</strong> 25</p>
-          <p><strong>Sleeps:</strong> 8</p>
+          <p><strong>Cabins:</strong> 5</p>
+          <p><strong>Capacity:</strong> 50</p>
+          <p><strong>Price:</strong> AED 15,000</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 180,000</p>
         </div>
-        <p class="description">The 98-foot Mr. & Mrs. Smith by Horizon Yachts is crafted for an exceptional charter experience...</p>
-        <div class="pricing">
-          <p><strong>报价:</strong> AED 4,000</p>
+        <p class="description">115尺超级游艇，5间客舱，可容纳50人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 2. Benetti 164 -->
+      <div class="rental-option">
+        <img src="images\Benetti164.webp" alt="Benetti Yacht">
+        <h3>164 Benetti</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 5</p>
+          <p><strong>Capacity:</strong> 50</p>
+          <p><strong>Price:</strong> AED 16,000</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 160,000</p>
+        </div>
+        <p class="description">164尺超级游艇，5间客舱，可容纳50人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 3. Baia Yachts -->
+      <div class="rental-option">
+        <img src="images/BaiaYachts.webp" alt="Baia Yachts">
+        <h3>100 Baia Yachts</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 4</p>
+          <p><strong>Capacity:</strong> 12</p>
+          <p><strong>Price:</strong> AED 6,000</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 70,000</p>
+        </div>
+        <p class="description">100尺超级游艇，4间客舱，可容纳12人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 4. Galeon -->
+      <div class="rental-option">
+        <img src="images/Galeon.webp" alt="Galeon Yacht">
+        <h3>70 Galeon</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 4</p>
+          <p><strong>Capacity:</strong> 12</p>
+          <p><strong>Price:</strong> AED 2,500</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 25,000</p>
+        </div>
+        <p class="description">70尺超级游艇，4间客舱，可容纳12人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 5. Sanlorenzo -->
+      <div class="rental-option">
+        <img src="images/Sanlorenzo.webp" alt="Sanlorenzo Yacht">
+        <h3>88 Sanlorenzo</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 4</p>
+          <p><strong>Capacity:</strong> 12</p>
+          <p><strong>Price:</strong> AED 6,500</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 78,000</p>
+        </div>
+        <p class="description">88尺超级游艇，4间客舱，可容纳12人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 6. CMB Yachts -->
+      <div class="rental-option">
+        <img src="images/CMBYachts.webp" alt="CMB Yachts">
+        <h3>154 CMB Yachts</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 5</p>
+          <p><strong>Capacity:</strong> 40</p>
+          <p><strong>Price:</strong> AED 16,000</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 190,000</p>
+        </div>
+        <p class="description">154尺超级游艇，5间客舱，可容纳40人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 7. Sunseeker Predator -->
+      <div class="rental-option">
+        <img src="images/SunseekerPredator.webp" alt="Sunseeker Predator">
+        <h3>108 Sunseeker Predator</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 4</p>
+          <p><strong>Capacity:</strong> 20</p>
+          <p><strong>Price:</strong> AED 5,000</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 48,000</p>
+        </div>
+        <p class="description">108尺超级游艇，4间客舱，可容纳20人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 8. Sunseeker 90 -->
+      <div class="rental-option">
+        <img src="images/Sunseeker90.webp" alt="Sunseeker 90">
+        <h3>90 Sunseeker</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 4</p>
+          <p><strong>Capacity:</strong> 20</p>
+          <p><strong>Price:</strong> AED 5,000</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 50,000</p>
+        </div>
+        <p class="description">90尺超级游艇，4间客舱，可容纳20人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 9. Majesty 92 -->
+      <div class="rental-option">
+        <img src="images/Majesty92.webp" alt="Majesty 92">
+        <h3>92 Majesty</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 4</p>
+          <p><strong>Capacity:</strong> 35</p>
+          <p><strong>Price:</strong> AED 3,800</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 57,000</p>
+        </div>
+        <p class="description">92尺超级游艇，4间客舱，可容纳35人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 10. Majesty 110 -->
+      <div class="rental-option">
+        <img src="images/Majesty110.webp" alt="Majesty 110">
+        <h3>110 Majesty</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 5</p>
+          <p><strong>Capacity:</strong> 50</p>
+          <p><strong>Price:</strong> AED 4,000</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 60,000</p>
+        </div>
+        <p class="description">110尺超级游艇，5间客舱，可容纳50人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 11. Majesty 82 -->
+      <div class="rental-option">
+        <img src="images/Majesty82.webp" alt="Majesty 82">
+        <h3>82 Majesty</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 2</p>
+          <p><strong>Capacity:</strong> 32</p>
+          <p><strong>Price:</strong> AED 3,750</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 56,250</p>
+        </div>
+        <p class="description">82尺超级游艇，2间客舱，可容纳32人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 12. Horizon Yacht -->
+      <div class="rental-option">
+        <img src="images/HorizonYacht.webp" alt="Horizon Yacht">
+        <h3>98 Horizon Yacht</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 3</p>
+          <p><strong>Capacity:</strong> 25</p>
+          <p><strong>Price:</strong> AED 3,500</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 52,500</p>
+        </div>
+        <p class="description">98尺超级游艇，3间客舱，可容纳12 - 25人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 13. Oceanfast -->
+      <div class="rental-option">
+        <img src="images/Oceanfast.webp" alt="Oceanfast">
+        <h3>164 Oceanfast</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 5</p>
+          <p><strong>Capacity:</strong> 35</p>
+          <p><strong>Price:</strong> AED 13,500</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 162,000</p>
+        </div>
+        <p class="description">164尺超级游艇，5间客舱，可容纳35人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 14. Ferretti 780 -->
+      <div class="rental-option">
+        <img src="images/Ferretti780.webp" alt="Ferretti 780">
+        <h3>78 Ferretti 780</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 4</p>
+          <p><strong>Capacity:</strong> 20</p>
+          <p><strong>Price:</strong> AED 5,000</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 56,000</p>
+        </div>
+        <p class="description">78尺超级游艇，4间客舱，可容纳20人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 15. Galeon 780 -->
+      <div class="rental-option">
+        <img src="images/Galeon780.webp" alt="Galeon 780">
+        <h3>78 Galeon 780</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 4</p>
+          <p><strong>Capacity:</strong> 20</p>
+          <p><strong>Price:</strong> AED 4,000</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 63,000</p>
+        </div>
+        <p class="description">78尺超级游艇，4间客舱，可容纳20人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 16. Ferretti 670 -->
+      <div class="rental-option">
+        <img src="images/Ferretti670.webp" alt="Ferretti 670">
+        <h3>67 Ferretti 670</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 3</p>
+          <p><strong>Capacity:</strong> 15</p>
+          <p><strong>Price:</strong> AED 2,600</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 36,400</p>
+        </div>
+        <p class="description">67尺超级游艇，3间客舱，可容纳15人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 17. Pershing 5X -->
+      <div class="rental-option">
+        <img src="images/Pershing5X.webp" alt="Pershing 5X">
+        <h3>54 Pershing 5X</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 2</p>
+          <p><strong>Capacity:</strong> 8</p>
+          <p><strong>Price:</strong> AED 2,400</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 33,600</p>
+        </div>
+        <p class="description">54尺超级游艇，2间客舱，可容纳8人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 18. Benetti 187 -->
+      <div class="rental-option">
+        <img src="images/Benetti187.webp" alt="Benetti 187">
+        <h3>187 Benetti</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 12</p>
+          <p><strong>Capacity:</strong> 35</p>
+          <p><strong>Price:</strong> AED 20,000</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 210,000</p>
+        </div>
+        <p class="description">187尺超级游艇，12间客舱，可容纳35人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 19. CRN 167 -->
+      <div class="rental-option">
+        <img src="images/CRN167.webp" alt="CRN 167">
+        <h3>167 CRN</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 7</p>
+          <p><strong>Capacity:</strong> 50-120</p>
+          <p><strong>Price:</strong> AED 15,000</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 110,000</p>
+        </div>
+        <p class="description">167尺超级游艇，7间客舱，可容纳50 - 120人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 20. Fairline 78 -->
+      <div class="rental-option">
+        <img src="images/Fairline78.webp" alt="Fairline 78">
+        <h3>78 Fairline</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 3</p>
+          <p><strong>Capacity:</strong> 25</p>
+          <p><strong>Price:</strong> AED 2,500</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 28,000</p>
+        </div>
+        <p class="description">78尺超级游艇，3间客舱，可容纳25人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 21. Sensation 160 -->
+      <div class="rental-option">
+        <img src="images/Sensation160.webp" alt="Sensation 160">
+        <h3>160 Sensation</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 4</p>
+          <p><strong>Capacity:</strong> 15</p>
+          <p><strong>Price:</strong> AED 18,000</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 180,000</p>
+        </div>
+        <p class="description">160尺超级游艇，4间客舱，可容纳15人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 22. Sunreef 62 -->
+      <div class="rental-option">
+        <img src="images/Sunreef62.webp" alt="Sunreef 62">
+        <h3>62 Sunreef</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 4</p>
+          <p><strong>Capacity:</strong> 20</p>
+          <p><strong>Price:</strong> AED 3,500</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 30,000</p>
+        </div>
+        <p class="description">62尺超级游艇，4间客舱，可容纳20人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 23. Palmer Johnson 135 -->
+      <div class="rental-option">
+        <img src="images/PalmerJohnson135.webp" alt="Palmer Johnson 135">
+        <h3>135 Palmer Johnson</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 5</p>
+          <p><strong>Capacity:</strong> 30</p>
+          <p><strong>Price:</strong> AED 15,500</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 156,000</p>
+        </div>
+        <p class="description">135尺超级游艇，5间客舱，可容纳30人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 24. PR MARINE 90 -->
+      <div class="rental-option">
+        <img src="images/PRMARINE90.webp" alt="PR MARINE 90">
+        <h3>90 PR MARINE</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 4</p>
+          <p><strong>Capacity:</strong> 25</p>
+          <p><strong>Price:</strong> AED 4,000</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 45,000</p>
+        </div>
+        <p class="description">90尺超级游艇，4间客舱，可容纳25人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 25. Ferretti 50 -->
+      <div class="rental-option">
+        <img src="images/Ferretti50.webp" alt="Ferretti 50">
+        <h3>50 Ferretti</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 2</p>
+          <p><strong>Capacity:</strong> 12</p>
+          <p><strong>Price:</strong> AED 1,000</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 20,000</p>
+        </div>
+        <p class="description">50尺超级游艇，2间客舱，可容纳12人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 26. Benetti 164 (Second) -->
+      <div class="rental-option">
+        <img src="images/Benetti164_2.webp" alt="Benetti 164">
+        <h3>164 Benetti</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 6</p>
+          <p><strong>Capacity:</strong> 50</p>
+          <p><strong>Price:</strong> AED 16,000</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 160,000</p>
+        </div>
+        <p class="description">164尺超级游艇，6间客舱，可容纳50人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 27. Sunseeker 82 -->
+      <div class="rental-option">
+        <img src="images/Sunseeker82.webp" alt="Sunseeker 82">
+        <h3>82 Sunseeker</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 4</p>
+          <p><strong>Capacity:</strong> 15</p>
+          <p><strong>Price:</strong> AED 4,000</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
           <p><strong>24 Hours:</strong> AED 40,000</p>
         </div>
+        <p class="description">82尺超级游艇，4间客舱，可容纳15人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 28. Sunseeker 70 -->
+      <div class="rental-option">
+        <img src="images/Sunseeker70.webp" alt="Sunseeker 70">
+        <h3>70 Sunseeker</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 4</p>
+          <p><strong>Capacity:</strong> 12</p>
+          <p><strong>Price:</strong> AED 2,500</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 25,000</p>
+        </div>
+        <p class="description">70尺超级游艇，4间客舱，可容纳12人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 29. Pershing 54 -->
+      <div class="rental-option">
+        <img src="images/Pershing54.webp" alt="Pershing 54">
+        <h3>54 Pershing</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 2</p>
+          <p><strong>Capacity:</strong> 8</p>
+          <p><strong>Price:</strong> AED 2,000</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 28,000</p>
+        </div>
+        <p class="description">54尺超级游艇，2间客舱，可容纳8人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 30. Azimut Magellano 66 -->
+      <div class="rental-option">
+        <img src="images/AzimutMagellano66.webp" alt="Azimut Magellano 66">
+        <h3>66 Azimut Magellano</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 4</p>
+          <p><strong>Capacity:</strong> 20</p>
+          <p><strong>Price:</strong> AED 3,000</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 30,000</p>
+        </div>
+        <p class="description">66尺超级游艇，4间客舱，可容纳20人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 31. Azimut Magellano 43 -->
+      <div class="rental-option">
+        <img src="images/AzimutMagellano43.webp" alt="Azimut Magellano 43">
+        <h3>43 Azimut Magellano</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 3</p>
+          <p><strong>Capacity:</strong> 12</p>
+          <p><strong>Price:</strong> AED 1,700</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 17,000</p>
+        </div>
+        <p class="description">43尺超级游艇，3间客舱，可容纳12人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 32. Sunseeker 131 -->
+      <div class="rental-option">
+        <img src="images/Sunseeker131.webp" alt="Sunseeker 131">
+        <h3>131 Sunseeker</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 7</p>
+          <p><strong>Capacity:</strong> 30</p>
+          <p><strong>Price:</strong> AED 15,000</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 150,000</p>
+        </div>
+        <p class="description">131尺超级游艇，7间客舱，可容纳30人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 33. Benetti 115 -->
+      <div class="rental-option">
+        <img src="images/Benetti115.webp" alt="Benetti 115">
+        <h3>115 Benetti</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 5</p>
+          <p><strong>Capacity:</strong> 50</p>
+          <p><strong>Price:</strong> AED 10,000</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 80,000</p>
+        </div>
+        <p class="description">115尺超级游艇，5间客舱，可容纳50人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 34. Sunseeker 116 -->
+      <div class="rental-option">
+        <img src="images/Sunseeker116.webp" alt="Sunseeker 116">
+        <h3>116 Sunseeker</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 5</p>
+          <p><strong>Capacity:</strong> 20</p>
+          <p><strong>Price:</strong> AED 15,000</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 180,000</p>
+        </div>
+        <p class="description">116尺超级游艇，5间客舱，可容纳20人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 35. Peri Yachts 124 -->
+      <div class="rental-option">
+        <img src="images/PeriYachts124.webp" alt="Peri Yachts 124">
+        <h3>124 Peri Yachts</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 5</p>
+          <p><strong>Capacity:</strong> 25</p>
+          <p><strong>Price:</strong> AED 15,000</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 180,000</p>
+        </div>
+        <p class="description">124尺超级游艇，5间客舱，可容纳25人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 36. Baglietto 108 -->
+      <div class="rental-option">
+        <img src="images/Baglietto108.webp" alt="Baglietto 108">
+        <h3>108 Baglietto</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 3</p>
+          <p><strong>Capacity:</strong> 20</p>
+          <p><strong>Price:</strong> AED 8,500</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 85,000</p>
+        </div>
+        <p class="description">108尺超级游艇，3间客舱，可容纳20人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 37. Numarine 105 -->
+      <div class="rental-option">
+        <img src="images/Numarine105.webp" alt="Numarine 105">
+        <h3>105 Numarine</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 3</p>
+          <p><strong>Capacity:</strong> 20</p>
+          <p><strong>Price:</strong> AED 8,000</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 80,000</p>
+        </div>
+        <p class="description">105尺超级游艇，3间客舱，可容纳20人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 38. Sunseeker 95 -->
+      <div class="rental-option">
+        <img src="images/Sunseeker95.webp" alt="Sunseeker 95">
+        <h3>95 Sunseeker</h3>
+        <div class="specs">
+          <p><strong>Cabins:</strong> 4</p>
+          <p><strong>Capacity:</strong> 30</p>
+          <p><strong>Price:</strong> AED 5,000</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>24 Hours:</strong> AED 55,000</p>
+        </div>
+        <p class="description">95尺超级游艇，4间客舱，可容纳30人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+      </div>
+
+      <!-- 继续添加剩余游艇，从第38艘之后 -->
+      <div class="rental-option">
+        <img src="images/Smith Yacht.webp" alt="Mr. & Mrs. Smith Yacht">
+        <h3>98 Mr. & Mrs. Smith</h3>
+        <div class="specs">
+          <p><strong>Price:</strong> 4000 AED每小时</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
+          <p><strong>Capacity:</strong> 25</p>
+          <p><strong>Cabins:</strong> 4</p>
+          <p><strong>24 Hours:</strong> AED 55,000</p>
+        </div>
+        <p class="description">98英尺豪华游艇，4间客舱，可容纳25人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
       </div>
 
       <div class="rental-option">
         <img src="images/Icon.webp" alt="Icon Yacht">
-        <h3>迪拜港口 Icon - 110ft Yacht</h3>
+        <h3>110ft Icon</h3>
         <div class="specs">
-          <p><strong>Size:</strong> 110ft</p>
-          <p><strong>Cabins:</strong> 4</p>
-          <p><strong>Crew:</strong> 4</p>
+          <p><strong>Price:</strong> 5000 AED每小时</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
           <p><strong>Capacity:</strong> 50</p>
-          <p><strong>Sleeps:</strong> 8</p>
+          <p><strong>Cabins:</strong> 4</p>
+          <p><strong>24 Hours:</strong> AED 55,000</p>
         </div>
-        <p class="description">The 110-foot Icon, from Gulf Craft's prestigious Majesty series, is a marvel of luxury and design...</p>
-        <div class="pricing">
-          <p><strong>报价:</strong> AED 5,000</p>
-          <p><strong>24 Hours:</strong> AED 50,000</p>
-        </div>
+        <p class="description">110英尺豪华游艇，4间客舱，可容纳50人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
       </div>
 
       <div class="rental-option">
         <img src="images/Stardom.webp" alt="Stardom Yacht">
-        <h3>迪拜港口 Stardom - 140ft Super Yacht</h3>
+        <h3>140 Stardom</h3>
         <div class="specs">
-          <p><strong>Size:</strong> 140ft</p>
-          <p><strong>Cabins:</strong> 5</p>
-          <p><strong>Crew:</strong> 10</p>
+          <p><strong>Price:</strong> 10000 AED每小时</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
           <p><strong>Capacity:</strong> 100</p>
-          <p><strong>Sleeps:</strong> 10</p>
+          <p><strong>Cabins:</strong> 5</p>
+          <p><strong>24 Hours:</strong> AED 115,000</p>
         </div>
-        <p class="description">The 140-foot Stardom redefines luxury with its tri-deck design and exquisite craftsmanship...</p>
-        <div class="pricing">
-          <p><strong>报价:</strong> AED 10,000</p>
-          <p><strong>24 Hours:</strong> AED 100,000</p>
-        </div>
+        <p class="description">140英尺超级游艇，5间客舱，可容纳100人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
       </div>
 
       <div class="rental-option">
         <img src="images/Encore.webp" alt="Encore Yacht">
-        <h3>迪拜港口 Encore - 131ft Super Yacht</h3>
+        <h3>131 Encore</h3>
         <div class="specs">
-          <p><strong>Size:</strong> 131ft</p>
-          <p><strong>Cabins:</strong> 5</p>
-          <p><strong>Crew:</strong> 10</p>
+          <p><strong>Price:</strong> 12500 AED每小时</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
           <p><strong>Capacity:</strong> 30</p>
-          <p><strong>Sleeps:</strong> 10</p>
+          <p><strong>Cabins:</strong> 5</p>
+          <p><strong>24 Hours:</strong> AED 155,000</p>
         </div>
-        <p class="description">The 131-foot Encore, crafted by Sunseeker, combines cutting-edge design with world-class luxury...</p>
-        <div class="pricing">
-          <p><strong>报价:</strong> AED 12,500</p>
-          <p><strong>24 Hours:</strong> AED 125,000</p>
-        </div>
+        <p class="description">131英尺超级游艇，5间客舱，可容纳30人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
       </div>
 
       <div class="rental-option">
-        <h3>迪拜港口 Behike - 150ft Super Yacht</h3>
+        <img src="images/behike.webp" alt="Behike Yacht">
+        <h3>150 Behike</h3>
         <div class="specs">
-          <p><strong>Size:</strong> 150ft</p>
-          <p><strong>Cabins:</strong> 5</p>
-          <p><strong>Crew:</strong> 10</p>
+          <p><strong>Price:</strong> 15000 AED每小时</p>
+          <p><strong>Duration:</strong> 四小时起租</p>
           <p><strong>Capacity:</strong> 12</p>
-          <p><strong>Sleeps:</strong> 10</p>
+          <p><strong>Cabins:</strong> 5</p>
+          <p><strong>24 Hours:</strong> AED 175,000</p>
         </div>
-        <p class="description">The 150-foot Behike from CRN delivers a premier yachting experience with a perfect blend of elegance and modernity...</p>
-        <div class="pricing">
-          <p><strong>报价:</strong> AED 15,000</p>
-          <p><strong>24 Hours:</strong> AED 150,000</p>
-        </div>
+        <p class="description">150英尺超级游艇，5间客舱，可容纳12人</p>
+        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
       </div>
     </div>
   </section>
@@ -386,10 +969,11 @@
     function copyAndRedirect() {
       const weChatID = "joeybaojunjie"; // 微信ID
       navigator.clipboard.writeText(weChatID).then(() => {
-        alert("微信ID已复制: " + weChatID);
-        // 跳转到微信聊天
-        window.location.href = "weixin://dl/chat?Joeybaojunjie";
+        alert("微信ID已复制: " + weChatID + "\n请打开微信添加好友");
+        // 尝试跳转到微信
+        window.location.href = "weixin://";
       }).catch(err => {
+        alert("微信ID: " + weChatID + "\n请手动复制并在微信中添加好友");
         console.error("复制失败: ", err);
       });
     }

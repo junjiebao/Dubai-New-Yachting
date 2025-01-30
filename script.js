@@ -86,59 +86,9 @@ const yachts = [
   }
 ];
 
-// 租赁游艇数据
-const rentalYachts = [
-  {
-    id: 1,
-    name: '迪拜港Mr. & Mrs. Smith - 98ft Yacht',
-    price: '4000 AED每小时',
-    image: 'images/Smith Yacht.webp',
-    description: '98英尺豪华游艇，4间客舱，可容纳25人'
-  },
-  {
-    id: 2,
-    name: '迪拜港Icon - 110ft Yacht',
-    price: '5000 AED每小时',
-    image: 'images/Icon.webp',
-    description: '110英尺豪华游艇，4间客舱，可容纳50人'
-  },
-  {
-    id: 3,
-    name: '迪拜港Stardom - 140ft Super Yacht',
-    price: '10000 AED每小时',
-    image: 'images/Stardom.webp',
-    description: '140英尺超级游艇，5间客舱，可容纳100人'
-  },
-  {
-    id: 4,
-    name: '迪拜港Encore - 131ft Super Yacht',
-    price: '12500 AED每小时',
-    image: 'images/Encore.webp',
-    description: '131英尺超级游艇，5间客舱，可容纳30人'
-  },
-  {
-    id: 5,
-    name: '迪拜港Behike - 150ft Super Yacht',
-    price: '15000 AED每小时',
-    image: 'images/behike.webp',
-    description: '150英尺超级游艇，5间客舱，可容纳12人'
-  }
-];
-
-// 租赁选项
-const rentalOptions = rentalYachts.map(yacht => ({
-  id: yacht.id,
-  name: yacht.name,
-  price: yacht.price,
-  duration: '四小时起租',
-  image: yacht.image,
-  description: yacht.description
-}));
-
 // 初始化页面
 document.addEventListener('DOMContentLoaded', () => {
   loadYachts();
-  loadRentalOptions();
   setupForm();
   setupSmoothScrolling();
 });
@@ -181,27 +131,10 @@ function loadYachts() {
       <div class="pricing">
         <p><strong>报价:</strong> ${yacht.price}</p>
       </div>
-      <button class="btn" onclick="showYachtDetail(${yacht.id})">查看详情</button>
+      <button class="btn" onclick="copyAndRedirect()">联系我们</button>
     `;
     yachtGrid.appendChild(yachtElement);
   });
-}
-
-// 加载租赁选项
-function loadRentalOptions() {
-  const rentOptions = document.querySelector('.rent-options');
-  rentOptions.innerHTML = rentalOptions.map(option => `
-    <div class="rental-option">
-      <img src="${option.image}" alt="${option.name}">
-      <h3>${option.name}</h3>
-      <div class="specs">
-        <p><strong>价格：</strong>${option.price}</p>
-        <p><strong>时长：</strong>${option.duration}</p>
-      </div>
-      <p class="description">${option.description}</p>
-      <button class="btn" onclick="selectRental(${option.id})">选择</button>
-    </div>
-  `).join('');
 }
 
 // 设置新建游艇表单
@@ -258,37 +191,15 @@ function handleFormSubmit(event) {
 }
 
 // 显示游艇详情
-function showYachtDetail(id) {
-  const yacht = yachts.find(y => y.id === id);
-  if (yacht) {
-    const message = `游艇详情：
-名称：${yacht.name}
-价格：${yacht.price}
-描述：${yacht.description}`;
-    
-    if (confirm(message + "\n\n点击确定查看，点击联系跳转到联系我们模块。")) {
-      // 确定按钮逻辑
-    } else {
-      // 联系按钮逻辑
-      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-    }
-  }
-}
-
-// 选择租赁选项
-function selectRental(id) {
-  const option = rentalOptions.find(o => o.id === id);
-  if (option) {
-    const message = `您已选择：
-套餐：${option.name}
-价格：${option.price}
-时长：${option.duration}`;
-    
-    if (confirm(message + "\n\n点击确定查看，点击联系跳转到联系我们模块。")) {
-      // 确定按钮逻辑
-    } else {
-      // 联系按钮逻辑
-      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-    }
-  }
-}
+// function showDetails(id) {
+//   const yacht = yachts.find(y => y.id === id);
+//   if (yacht) {
+//     const message = `
+//       游艇详情：
+//       ${yacht.name}
+//       价格：${yacht.price}
+//       ${yacht.description}
+//     `;
+//     alert(message);
+//   }
+// }

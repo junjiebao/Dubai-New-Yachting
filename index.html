@@ -187,6 +187,35 @@
         text-align: left;
         padding: 0 10px;
       }
+
+      .button-group {
+        flex-direction: column;
+        gap: 6px;
+        padding: 0 8px;
+      }
+      
+      .btn, .btn-secondary {
+        width: 100%;
+        padding: 6px 8px;
+        font-size: 13px;
+        white-space: nowrap;
+        margin: 0;
+        min-height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+      }
+
+      .rental-option {
+        padding: 10px;
+      }
+
+      .rental-option .button-group {
+        margin-top: 8px;
+        width: calc(100% - 16px);
+        margin: 8px auto;
+      }
     }
 
     /* 添加平板设备的优化 */
@@ -267,6 +296,72 @@
       font-size: 1.2rem;
       margin: 0.8rem 0;
     }
+
+    /* 修改按钮组的样式 */
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 1rem;
+      justify-content: center;
+    }
+
+    /* 统一按钮样式 */
+    .btn, .btn-secondary {
+      width: 100%;
+      padding: 8px 16px;
+      font-size: 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      text-align: center;
+      min-height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none; /* 移除链接下划线 */
+      box-sizing: border-box; /* 确保padding不会影响总宽度 */
+      margin: 0;
+      border: none;
+    }
+
+    /* 确保查看详情按钮和联系我们按钮样式一致 */
+    .btn-secondary {
+      background-color: #4a90e2;
+      color: white;
+    }
+
+    .btn {
+      background-color: #22577E;
+      color: white;
+    }
+
+    /* 移动端样式调整 */
+    @media screen and (max-width: 768px) {
+      .button-group {
+        flex-direction: column;
+        gap: 6px;
+        padding: 0 8px;
+        width: calc(100% - 16px);
+        margin: 8px auto;
+      }
+
+      .btn, .btn-secondary {
+        width: 100%;
+        padding: 6px 8px;
+        font-size: 13px;
+        min-height: 32px;
+        white-space: nowrap;
+      }
+
+      .rental-option {
+        padding: 10px;
+      }
+
+      .rental-option .button-group {
+        margin-top: 8px;
+        width: calc(100% - 16px);
+        margin: 8px auto;
+      }
+    }
   </style>
 </head>
 <body>
@@ -290,7 +385,145 @@
     <h2>购买：</h2>
     <h4>我们在全世界市场协助您找到诚心如意的游艇</h4>
     <div class="yacht-grid">
-      <!-- 这里不需要空的 yacht-card div -->
+      <!-- 1. 2014 M/Y Queen Alla -->
+      <div class="yacht-card">
+        <img src="images/yahct1.jpg" alt="2021 Pershing 8X">
+        <h3>2014 M/Y Queen Alla</h3>
+        <div class="specs">
+          <p><strong>Length:</strong> 43 m</p>
+          <p><strong>Top Speed:</strong> 16 kn</p>
+          <p><strong>GT:</strong> 381</p>
+          <p><strong>Crew:</strong> 8</p>
+          <p><strong>Delivered:</strong> 2014</p>
+          <p><strong>Beam:</strong> 8.6 m</p>
+          <p><strong>Guests:</strong> 10</p>
+        </div>
+        <div class="description">豪华43米超级游艇，抢眼配色，内饰豪华</div>
+        <div class="pricing">
+          <p><strong>报价:</strong> $17,000,000</p>
+        </div>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cuAeevjyTxru" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
+      </div>
+
+      <!-- 2. Riva 100 Corsaro -->
+      <div class="yacht-card">
+        <img src="images\yacht2.jpg" alt="Riva 102 Corsaro">
+        <h3>Riva 100 Corsaro</h3>
+        <div class="specs">
+          <p><strong>Length:</strong> 29.9 m</p>
+          <p><strong>Top Speed:</strong> 28 kn</p>
+          <p><strong>GT:</strong> 120</p>
+          <p><strong>Crew:</strong> 3</p>
+          <p><strong>Delivered:</strong> 2021</p>
+          <p><strong>Beam:</strong> 6.70 m</p>
+          <p><strong>Guests:</strong> 10</p>
+        </div>
+        <div class="description">意大利丽娃100尺，豪华超级游艇</div>
+        <div class="pricing">
+          <p><strong>报价:</strong> $9,250,000</p>
+        </div>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/chcwgeaoMNTj" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
+      </div>
+
+      <!-- 3. Majesty T100 -->
+      <div class="yacht-card">
+        <img src="images\majesty T100.jpg" alt="Riva 110">
+        <h3>Majesty T100</h3>
+        <div class="specs">
+          <p><strong>Length:</strong> 43.12 m</p>
+          <p><strong>Top Speed:</strong> 18 kn</p>
+          <p><strong>GT:</strong> 398</p>
+          <p><strong>Crew:</strong> 9</p>
+          <p><strong>Delivered:</strong> 2025</p>
+          <p><strong>Beam:</strong> 8.23 m</p>
+          <p><strong>Guests:</strong> 12</p>
+        </div>
+        <div class="description">2025年即将交付的全新游艇，外部和内部设计时尚宽敞，可以按需定制内饰</div>
+        <div class="pricing">
+          <p><strong>报价:</strong> $10,800,000 起</p>
+        </div>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cgVhqUJzkkVY" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
+      </div>
+
+      <!-- 4. Numarine 32XP -->
+      <div class="yacht-card">
+        <img src="images/32XP.jpg" alt="Numarine 32XP">
+        <h3>Numarine 32XP</h3>
+        <div class="specs">
+          <p><strong>Length:</strong> 32.63 m</p>
+          <p><strong>Top Speed:</strong> 14 kn</p>
+          <p><strong>GT:</strong> 297</p>
+          <p><strong>Crew:</strong> 2</p>
+          <p><strong>Delivered:</strong> 2026</p>
+          <p><strong>Beam:</strong> 8.00 m</p>
+          <p><strong>Guests:</strong> 10</p>
+        </div>
+        <div class="description">2026年交付的32XP游艇，土耳其建造的探险游艇。</div>
+        <div class="pricing">
+          <p><strong>报价:</strong> €13,900,000</p>
+        </div>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cnweWbhQTAgQ" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
+      </div>
+
+      <!-- 5. KING BENJI -->
+      <div class="yacht-card">
+        <img src="images/KING BENJI.jpg" alt="KING BENJI">
+        <h3>KING BENJI</h3>
+        <div class="specs">
+          <p><strong>Length:</strong> 46.70 m</p>
+          <p><strong>Top Speed:</strong> 15 kn</p>
+          <p><strong>GT:</strong> 491</p>
+          <p><strong>Crew:</strong> 2</p>
+          <p><strong>Delivered:</strong> 2024</p>
+          <p><strong>Beam:</strong> 8.88 m</p>
+          <p><strong>Guests:</strong> 12</p>
+        </div>
+        <div class="description">这艘名为KING BENJI的Dunya Yachts豪华探险游艇建造于2024年，外观设计师为Gregory C. Marshall Naval Architect，内部装潢由Design Unlimited设计。</div>
+        <div class="pricing">
+          <p><strong>报价:</strong> $45,000,000</p>
+        </div>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cgAhUqSbjxfk" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
+      </div>
+
+      <!-- 6. Sunseeker 95 -->
+      <div class="yacht-card">
+        <img src="images/2018 sunseeker 95.jpg" alt="Sunseeker 95">
+        <h3>Sunseeker 95</h3>
+        <div class="specs">
+          <p><strong>Length:</strong> 28.07 m</p>
+          <p><strong>Top Speed:</strong> 26 kn</p>
+          <p><strong>GT:</strong> 84.7</p>
+          <p><strong>Crew:</strong> 2</p>
+          <p><strong>Delivered:</strong> 2018</p>
+          <p><strong>Beam:</strong> 6.58 m</p>
+          <p><strong>Guests:</strong> 8</p>
+        </div>
+        <div class="description">这艘2018年建造的Sunseeker 95游艇，内部装潢豪华，配备了两台MTU 12V 2000 M96L发动机。</div>
+        <div class="pricing">
+          <p><strong>报价:</strong> $6,900,000</p>
+        </div>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/ct8VAxyAFemg" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
+      </div>
+
+      <!-- 继续添加其他游艇... -->
     </div>
   </section>
 
@@ -310,7 +543,10 @@
           <p><strong>24 Hours:</strong> AED 180,000</p>
         </div>
         <p class="description">115尺超级游艇，5间客舱，可容纳50人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cnxOB13TbQod" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 2. Benetti 164 -->
@@ -325,7 +561,10 @@
           <p><strong>24 Hours:</strong> AED 160,000</p>
         </div>
         <p class="description">164尺超级游艇，5间客舱，可容纳50人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/ce9jjenM8b9C" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 3. Baia Yachts -->
@@ -340,7 +579,10 @@
           <p><strong>24 Hours:</strong> AED 70,000</p>
         </div>
         <p class="description">100尺超级游艇，4间客舱，可容纳12人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/clf2C2xFd9ky" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 4. Galeon -->
@@ -355,7 +597,10 @@
           <p><strong>24 Hours:</strong> AED 25,000</p>
         </div>
         <p class="description">70尺超级游艇，4间客舱，可容纳12人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cqLU0rl2v4B1" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 5. Sanlorenzo -->
@@ -370,7 +615,10 @@
           <p><strong>24 Hours:</strong> AED 78,000</p>
         </div>
         <p class="description">88尺超级游艇，4间客舱，可容纳12人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cgCJrH0W0KL1" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 6. CMB Yachts -->
@@ -385,7 +633,10 @@
           <p><strong>24 Hours:</strong> AED 190,000</p>
         </div>
         <p class="description">154尺超级游艇，5间客舱，可容纳40人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cqYhBO7FsNp2" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 7. Sunseeker Predator -->
@@ -400,7 +651,10 @@
           <p><strong>24 Hours:</strong> AED 48,000</p>
         </div>
         <p class="description">108尺超级游艇，4间客舱，可容纳20人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cvKRN6fJW4fN" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 8. Sunseeker 90 -->
@@ -415,7 +669,10 @@
           <p><strong>24 Hours:</strong> AED 50,000</p>
         </div>
         <p class="description">90尺超级游艇，4间客舱，可容纳20人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cb9Ot5p2Ao0s" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 9. Majesty 92 -->
@@ -430,7 +687,10 @@
           <p><strong>24 Hours:</strong> AED 57,000</p>
         </div>
         <p class="description">92尺超级游艇，4间客舱，可容纳35人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cuerqJrHm9j0" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 10. Majesty 110 -->
@@ -445,7 +705,10 @@
           <p><strong>24 Hours:</strong> AED 60,000</p>
         </div>
         <p class="description">110尺超级游艇，5间客舱，可容纳50人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="hhttps://kdocs.cn/l/cmGIiMaifcBp" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 11. Majesty 82 -->
@@ -460,7 +723,10 @@
           <p><strong>24 Hours:</strong> AED 56,250</p>
         </div>
         <p class="description">82尺超级游艇，2间客舱，可容纳32人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cl04dYxOuKpR" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 12. Horizon Yacht -->
@@ -475,7 +741,10 @@
           <p><strong>24 Hours:</strong> AED 52,500</p>
         </div>
         <p class="description">98尺超级游艇，3间客舱，可容纳12 - 25人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cqgySBXnHg5w" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 13. Oceanfast -->
@@ -490,7 +759,10 @@
           <p><strong>24 Hours:</strong> AED 162,000</p>
         </div>
         <p class="description">164尺超级游艇，5间客舱，可容纳35人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cgKGQpG7UVBZ" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 14. Ferretti 780 -->
@@ -505,7 +777,10 @@
           <p><strong>24 Hours:</strong> AED 56,000</p>
         </div>
         <p class="description">78尺超级游艇，4间客舱，可容纳20人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cnI6cIRIoKP0" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 15. Galeon 780 -->
@@ -520,7 +795,10 @@
           <p><strong>24 Hours:</strong> AED 63,000</p>
         </div>
         <p class="description">78尺超级游艇，4间客舱，可容纳20人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/ck1puNbJ8x2Q" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 16. Ferretti 670 -->
@@ -535,7 +813,10 @@
           <p><strong>24 Hours:</strong> AED 36,400</p>
         </div>
         <p class="description">67尺超级游艇，3间客舱，可容纳15人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cirP6cLeqCzf" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 17. Pershing 5X -->
@@ -550,7 +831,10 @@
           <p><strong>24 Hours:</strong> AED 33,600</p>
         </div>
         <p class="description">54尺超级游艇，2间客舱，可容纳8人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cdvyLDhs8jmX" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 18. Benetti 187 -->
@@ -565,7 +849,10 @@
           <p><strong>24 Hours:</strong> AED 210,000</p>
         </div>
         <p class="description">187尺超级游艇，12间客舱，可容纳35人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cbEi57DEKRaa" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 19. CRN 167 -->
@@ -580,7 +867,10 @@
           <p><strong>24 Hours:</strong> AED 110,000</p>
         </div>
         <p class="description">167尺超级游艇，7间客舱，可容纳50 - 120人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cgb1jBaAa6et" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 20. Fairline 78 -->
@@ -595,7 +885,10 @@
           <p><strong>24 Hours:</strong> AED 28,000</p>
         </div>
         <p class="description">78尺超级游艇，3间客舱，可容纳25人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cje0HTf1lMkB" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 21. Sensation 160 -->
@@ -610,7 +903,10 @@
           <p><strong>24 Hours:</strong> AED 180,000</p>
         </div>
         <p class="description">160尺超级游艇，4间客舱，可容纳15人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cc8hebZw6IOD" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 22. Sunreef 62 -->
@@ -625,7 +921,10 @@
           <p><strong>24 Hours:</strong> AED 30,000</p>
         </div>
         <p class="description">62尺超级游艇，4间客舱，可容纳20人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cqdBKnXrvVhF" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 23. Palmer Johnson 135 -->
@@ -640,7 +939,10 @@
           <p><strong>24 Hours:</strong> AED 156,000</p>
         </div>
         <p class="description">135尺超级游艇，5间客舱，可容纳30人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/crpPKbZrGZRs" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 24. PR MARINE 90 -->
@@ -655,7 +957,10 @@
           <p><strong>24 Hours:</strong> AED 45,000</p>
         </div>
         <p class="description">90尺超级游艇，4间客舱，可容纳25人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cvJFUwuHreGg" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 25. Ferretti 50 -->
@@ -670,7 +975,10 @@
           <p><strong>24 Hours:</strong> AED 20,000</p>
         </div>
         <p class="description">50尺超级游艇，2间客舱，可容纳12人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/csblaCbG1jO0" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 26. Benetti 164 (Second) -->
@@ -685,7 +993,10 @@
           <p><strong>24 Hours:</strong> AED 160,000</p>
         </div>
         <p class="description">164尺超级游艇，6间客舱，可容纳50人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/ce9jjenM8b9C" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 27. Sunseeker 82 -->
@@ -700,7 +1011,10 @@
           <p><strong>24 Hours:</strong> AED 40,000</p>
         </div>
         <p class="description">82尺超级游艇，4间客舱，可容纳15人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/crRB57svLJyV" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 28. Sunseeker 70 -->
@@ -715,7 +1029,10 @@
           <p><strong>24 Hours:</strong> AED 25,000</p>
         </div>
         <p class="description">70尺超级游艇，4间客舱，可容纳12人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/clf997Mu6sjh" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 29. Pershing 54 -->
@@ -730,7 +1047,10 @@
           <p><strong>24 Hours:</strong> AED 28,000</p>
         </div>
         <p class="description">54尺超级游艇，2间客舱，可容纳8人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cay9UcZDtYBS" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 30. Azimut Magellano 66 -->
@@ -745,7 +1065,10 @@
           <p><strong>24 Hours:</strong> AED 30,000</p>
         </div>
         <p class="description">66尺超级游艇，4间客舱，可容纳20人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cfjvMXYhOxFC" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 31. Azimut Magellano 43 -->
@@ -760,7 +1083,10 @@
           <p><strong>24 Hours:</strong> AED 17,000</p>
         </div>
         <p class="description">43尺超级游艇，3间客舱，可容纳12人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/ccsEH1EHY0YT" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 32. Sunseeker 131 -->
@@ -775,7 +1101,10 @@
           <p><strong>24 Hours:</strong> AED 150,000</p>
         </div>
         <p class="description">131尺超级游艇，7间客舱，可容纳30人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cpKfnrMFNaNf" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 33. Benetti 115 -->
@@ -790,7 +1119,10 @@
           <p><strong>24 Hours:</strong> AED 80,000</p>
         </div>
         <p class="description">115尺超级游艇，5间客舱，可容纳50人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/ckxIYRYpTe77" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 34. Sunseeker 116 -->
@@ -805,7 +1137,10 @@
           <p><strong>24 Hours:</strong> AED 180,000</p>
         </div>
         <p class="description">116尺超级游艇，5间客舱，可容纳20人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cnEfpI9gl7pX" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 35. Peri Yachts 124 -->
@@ -820,22 +1155,10 @@
           <p><strong>24 Hours:</strong> AED 180,000</p>
         </div>
         <p class="description">124尺超级游艇，5间客舱，可容纳25人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
-      </div>
-
-      <!-- 36. Baglietto 108 -->
-      <div class="rental-option">
-        <img src="images/Baglietto108.webp" alt="Baglietto 108">
-        <h3>108 Baglietto</h3>
-        <div class="specs">
-          <p><strong>Cabins:</strong> 3</p>
-          <p><strong>Capacity:</strong> 20</p>
-          <p><strong>Price:</strong> AED 8,500</p>
-          <p><strong>Duration:</strong> 四小时起租</p>
-          <p><strong>24 Hours:</strong> AED 85,000</p>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/csQLpIiYzCD9" target="_blank" class="btn btn-secondary">查看详情</a>
         </div>
-        <p class="description">108尺超级游艇，3间客舱，可容纳20人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
       </div>
 
       <!-- 37. Numarine 105 -->
@@ -850,7 +1173,10 @@
           <p><strong>24 Hours:</strong> AED 80,000</p>
         </div>
         <p class="description">105尺超级游艇，3间客舱，可容纳20人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cbqry9iDIzE0" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <!-- 38. Sunseeker 95 -->
@@ -865,36 +1191,10 @@
           <p><strong>24 Hours:</strong> AED 55,000</p>
         </div>
         <p class="description">95尺超级游艇，4间客舱，可容纳30人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
-      </div>
-
-      <!-- 继续添加剩余游艇，从第38艘之后 -->
-      <div class="rental-option">
-        <img src="images/Smith Yacht.webp" alt="Mr. & Mrs. Smith Yacht">
-        <h3>98 Mr. & Mrs. Smith</h3>
-        <div class="specs">
-          <p><strong>Price:</strong> 4000 AED每小时</p>
-          <p><strong>Duration:</strong> 四小时起租</p>
-          <p><strong>Capacity:</strong> 25</p>
-          <p><strong>Cabins:</strong> 4</p>
-          <p><strong>24 Hours:</strong> AED 55,000</p>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/clscHYYBYn0m" target="_blank" class="btn btn-secondary">查看详情</a>
         </div>
-        <p class="description">98英尺豪华游艇，4间客舱，可容纳25人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
-      </div>
-
-      <div class="rental-option">
-        <img src="images/Icon.webp" alt="Icon Yacht">
-        <h3>110ft Icon</h3>
-        <div class="specs">
-          <p><strong>Price:</strong> 5000 AED每小时</p>
-          <p><strong>Duration:</strong> 四小时起租</p>
-          <p><strong>Capacity:</strong> 50</p>
-          <p><strong>Cabins:</strong> 4</p>
-          <p><strong>24 Hours:</strong> AED 55,000</p>
-        </div>
-        <p class="description">110英尺豪华游艇，4间客舱，可容纳50人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
       </div>
 
       <div class="rental-option">
@@ -908,7 +1208,10 @@
           <p><strong>24 Hours:</strong> AED 115,000</p>
         </div>
         <p class="description">140英尺超级游艇，5间客舱，可容纳100人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cjcR06Np3mDQ" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
       <div class="rental-option">
@@ -922,22 +1225,13 @@
           <p><strong>24 Hours:</strong> AED 155,000</p>
         </div>
         <p class="description">131英尺超级游艇，5间客舱，可容纳30人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+        <div class="button-group">
+          <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+          <a href="https://kdocs.cn/l/cpDMmHQ8o2WN" target="_blank" class="btn btn-secondary">查看详情</a>
+        </div>
       </div>
 
-      <div class="rental-option">
-        <img src="images/behike.webp" alt="Behike Yacht">
-        <h3>150 Behike</h3>
-        <div class="specs">
-          <p><strong>Price:</strong> 15000 AED每小时</p>
-          <p><strong>Duration:</strong> 四小时起租</p>
-          <p><strong>Capacity:</strong> 12</p>
-          <p><strong>Cabins:</strong> 5</p>
-          <p><strong>24 Hours:</strong> AED 175,000</p>
-        </div>
-        <p class="description">150英尺超级游艇，5间客舱，可容纳12人</p>
-        <button class="btn" onclick="copyAndRedirect()">联系我们</button>
-      </div>
+      
     </div>
   </section>
 

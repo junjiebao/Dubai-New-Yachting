@@ -25,26 +25,18 @@ function setupForm() {
   const form = document.getElementById('custom-yacht-form');
   form.innerHTML = `
     <div class="form-group">
-      <label for="yacht-type">游艇类型</label>
-      <select id="yacht-type" required>
-        <option value="">请选择</option>
-        <option value="long range cruiser yacht">长航生活游艇</option>
-        <option value="Polar Expedition yacht">极地探险游艇</option>
-        <option value="Global Expedition Yacht">环球探险游艇</option>
-        <option value="Regional Expedition Yacht">区域探险游艇</option>
-        <option value="Hoilday getway yacht">假日休闲游艇</option>
-        <option value="Business Leisure Yacht">商务休闲游艇</option>
-      </select>
+      <label for="yacht-brand">游艇品牌</label>
+      <input type="text" id="yacht-brand" name="yacht-brand" required>
     </div>
     <div class="form-group">
-      <label for="length">长度（米）</label>
-      <input type="number" id="length" min="12" max="120" required>
+      <label for="yacht-model">游艇型号</label>
+      <input type="text" id="yacht-model" name="yacht-model" required>
     </div>
     <div class="form-group">
-      <label for="features">特殊功能</label>
-      <textarea id="features" rows="4"></textarea>
+      <label for="yacht-year">建造年代</label>
+      <input type="number" id="yacht-year" name="yacht-year" min="1900" max="2024" required>
     </div>
-    <button type="submit" class="btn">提交需求</button>
+    <button type="submit" class="btn">联系提交</button>
   `;
 
   form.addEventListener('submit', handleFormSubmit);
@@ -56,17 +48,17 @@ function handleFormSubmit(event) {
   const formData = new FormData(event.target);
   const data = Object.fromEntries(formData.entries());
   
-  // 复制提交的内容
-  const requestDetails = `游艇类型: ${data['yacht-type']}, 长度: ${data['length']}米, 特殊功能: ${data['features']}`;
+  // 修改提交内容的格式
+  const requestDetails = `游艇品牌: ${data['yacht-brand']}, 游艇型号: ${data['yacht-model']}, 建造年代: ${data['yacht-year']}`;
   navigator.clipboard.writeText(requestDetails).then(() => {
-    alert('您的定制需求已复制: ' + requestDetails);
+    alert('您的出售信息已复制: ' + requestDetails);
     
     // 选择联系的方式
     const contactMethod = confirm("您想通过 WhatsApp 还是 微信 联系我们？点击确定转到 WhatsApp，取消转到微信。");
     if (contactMethod) {
-      window.open("https://wa.me/971561018837", "_blank"); // 转到 WhatsApp
+      window.open("https://wa.me/971561018837", "_blank");
     } else {
-      copyAndRedirect(); // 转到微信
+      copyAndRedirect();
     }
   }).catch(err => {
     console.error("复制失败: ", err);

@@ -112,15 +112,14 @@
       }
 
       .rent-options {
-        grid-template-columns: 1fr;
-        gap: 1rem;
+        grid-template-columns: 1fr !important; /* 强制单列 */
+        gap: 1.5rem;
         padding: 1rem;
       }
 
       .rental-option {
-        margin: 0.5rem;
-        padding: 1rem;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin: 0;  /* 移除外边距 */
+        width: 100%; /* 确保宽度为100% */
       }
 
       .rental-option img {
@@ -166,10 +165,27 @@
       .contact-info {
         padding: 1rem;
         flex-direction: column;
+        width: 100%;
       }
 
       .contact-info > div {
         margin: 0.5rem 0;
+        word-wrap: break-word; /* 允许长文本换行 */
+        overflow-wrap: break-word;
+        font-size: 0.9rem; /* 稍微减小字体大小 */
+        line-height: 1.4; /* 增加行高 */
+        padding: 0 10px; /* 添加左右内边距 */
+      }
+
+      /* 调整电话和邮箱的显示 */
+      .phone, .email {
+        white-space: normal; /* 允许文本换行 */
+      }
+
+      /* 调整地址显示 */
+      .address {
+        text-align: left;
+        padding: 0 10px;
       }
     }
 

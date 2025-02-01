@@ -362,23 +362,130 @@
         margin: 8px auto;
       }
     }
+
+    /* 修改现有的 logo 相关样式 */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-img {
+      height: 60px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .logo {
+      font-size: 4rem;
+      font-weight: bold;
+      color: #fff;
+      margin: 0;
+    }
+
+    /* 移动端适配 */
+    @media screen and (max-width: 768px) {
+      .logo-container {
+        width: 100%;
+        padding: 1rem 0.5rem;
+        gap: 0.8rem;
+      }
+
+      .logo-img {
+        height: 80px; /* 增大移动端 logo 尺寸 */
+      }
+
+      .logo-cn {
+        font-size: 1.5rem;
+      }
+
+      .logo-en {
+        font-size: 1.2rem;
+        margin-top: 0.2rem;
+      }
+    }
+
+    /* 桌面端样式 */
+    .logo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1rem;
+    }
+
+    .logo-img {
+      height: 150px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.5rem;
+    }
+
+    .logo-cn {
+      font-size: 4rem;
+      font-weight: bold;
+      color: #fff;
+      margin: 0;
+    }
+
+    .logo-en {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #fff;
+      margin: 0;
+    }
+
+    /* 移动端适配 */
+    @media screen and (max-width: 768px) {
+      .logo-container {
+        width: 100%;
+        padding: 1rem 0.5rem;
+        gap: 0.8rem;
+      }
+
+      .logo-img {
+        height: 80px;
+      }
+
+      .logo-cn {
+        font-size: 1.5rem;
+      }
+
+      .logo-en {
+        font-size: 1.2rem;
+        margin-top: 0.2rem;
+      }
+    }
   </style>
 </head>
 <body>
 <header>
-<nav>
-  <div class="logo">迪拜新游艇 New Yachting LLC</div>
-  <button class="mobile-nav-toggle">
-    <i class="fas fa-bars"></i>
-  </button>
-  <ul class="nav-links">
-    <li><a href="#buy">购买</a></li>
-    <li><a href="#rent">租赁</a></li>
-    <li><a href="#build">出售</a></li>
-    <li><a href="#contact">联系我们</a></li>
-  </ul>
-</nav>
-  
+  <nav>
+    <!-- 添加logo图片和保持原有字体大小的标题 -->
+    <div class="logo-container">
+      <img src="images\logo blue.png" alt="迪拜新游艇 Logo" class="logo-img">
+      <div class="logo">
+        <div class="logo-cn">迪拜新游艇</div>
+        <div class="logo-en">New Yachting LLC</div>
+      </div>
+    </div>
+    <button class="mobile-nav-toggle">
+      <i class="fas fa-bars"></i>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#buy">购买</a></li>
+      <li><a href="#rent">租赁</a></li>
+      <li><a href="#build">出售</a></li>
+      <li><a href="#contact">联系我们</a></li>
+    </ul>
+  </nav>
 </header>
 
   <section id="buy" class="section">

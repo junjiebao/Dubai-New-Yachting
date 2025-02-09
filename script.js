@@ -2,6 +2,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   setupForm();
   setupSmoothScrolling();
+  shuffleYachtCards();
+  sortRentalYachtsByPrice();
 });
 
 // 设置平滑滚动
@@ -78,3 +80,50 @@ function handleFormSubmit(event) {
 //     alert(message);
 //   }
 // }
+
+// 添加随机排序函数
+function shuffleYachtCards() {
+  const yachtGrid = document.querySelector('.yacht-grid');
+  const yachtCards = Array.from(yachtGrid.children);
+  
+  // 获取今天的日期作为随机种子
+  const today = new Date().toDateString();
+  
+  // Fisher-Yates 洗牌算法，使用日期作为种子
+  for (let i = yachtCards.length - 1; i > 0; i--) {
+    // 使用日期字符串生成伪随机数
+    const seed = today.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    const j = Math.floor((seed * (i + 1)) % (i + 1));
+    
+    // 交换元素位置
+    [yachtCards[i], yachtCards[j]] = [yachtCards[j], yachtCards[i]];
+  }
+  
+  // 清空并重新添加排序后的卡片
+  yachtGrid.innerHTML = '';
+  yachtCards.forEach(card => yachtGrid.appendChild(card));
+}
+
+// 添加租赁游艇价格排序函数
+function sortRentalYachtsByPrice() {
+  const rentOptions = document.querySelector('.rent-options');
+  const rentalCards = Array.from(rentOptions.children);
+  
+  // 按价格排序（从低到高）
+  rentalCards.sort((a, b) => {
+    // 获取价格文本
+    const priceA = a.querySelector('.specs p:nth-child(3)').textContent;
+    const priceB = b.querySelector('.specs p:nth-child(3)').textContent;
+    
+    // 提取数字部分
+    const numA = parseInt(priceA.match(/\d+/)[0]);
+    const numB = parseInt(priceB.match(/\d+/)[0]);
+    
+    // 升序排列（从低到高）
+    return numA - numB;
+  });
+  
+  // 清空并重新添加排序后的卡片
+  rentOptions.innerHTML = '';
+  rentalCards.forEach(card => rentOptions.appendChild(card));
+}

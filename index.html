@@ -420,6 +420,14 @@
       object-fit: contain;
     }
 
+    .logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.5rem;
+    }
+
     .logo-cn {
       font-size: 4rem;
       font-weight: bold;
@@ -436,34 +444,23 @@
 
     /* 移动端适配 */
     @media screen and (max-width: 768px) {
-      /* 调整header背景图高度 */
-      header {
-        height: 180px; /* 减小header高度 */
-        min-height: auto; /* 移除最小高度限制 */
-      }
-
       .logo-container {
         width: 100%;
-        padding: 0.5rem;
-        gap: 0.5rem;
+        padding: 1rem 0.5rem;
+        gap: 0.8rem;
       }
 
       .logo-img {
-        height: 100px; /* 调整logo大小 */
+        height: 80px;
       }
 
       .logo-cn {
-        font-size: 1.3rem; /* 调整中文标题大小 */
+        font-size: 1.5rem;
       }
 
       .logo-en {
-        font-size: 1rem; /* 调整英文标题大小 */
-        margin-top: 0.1rem;
-      }
-
-      /* 调整导航按钮位置 */
-      .mobile-nav-toggle {
-        top: 0.5rem;
+        font-size: 1.2rem;
+        margin-top: 0.2rem;
       }
     }
   </style>
@@ -834,29 +831,6 @@
                 <div class="button-group">
                   <button class="btn" onclick="copyAndRedirect()">联系我们</button>
                   <a href="https://kdocs.cn/l/cnajy8A7PNON" target="_blank" class="btn btn-secondary">查看详情</a>
-                </div>
-              </div>   
-              
-              <!-- 16. 2009 Baglietto 54 Burkut -->
-              <div class="yacht-card">
-                <img src="images\2009 Baglietto 54 Burkut.jpg" alt="2009 Baglietto 54 Burkut">
-                <h3>2009 Baglietto 54 Burkut</h3>
-                <div class="specs">
-                  <p><strong>长度:</strong> 43.9 m</p>
-                  <p><strong>船宽:</strong> 10.2 m</p>
-                  <p><strong>最高速度:</strong> 17 kn</p>
-                  <p><strong>总吨位:</strong> 733 </p>
-                  <p><strong>载客人数:</strong> 10 </p>
-                  <p><strong>交付年份:</strong> 2009/2021</p>
-                  <p><strong>船员数:</strong> 13 </p>
-                </div>
-                <div class="description">2009年意大利Baglietto品牌超级游艇，目前停泊在迪拜，钢铝结构全排水船体，经典外观设计。2021年全船翻新过</div>
-                <div class="pricing">
-                  <p><strong>报价:</strong> €18,750,000 </p>
-                </div>
-                <div class="button-group">
-                  <button class="btn" onclick="copyAndRedirect()">联系我们</button>
-                  <a href="https://kdocs.cn/l/cuXDnApBZ3HC" target="_blank" class="btn btn-secondary">查看详情</a>
                 </div>
               </div>    
     </div>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${article.title} - 迪拜新游艇</title>
+    <meta name="description" content="${article.description}">
+    
+    <!-- 添加更多SEO相关标签 -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="${article.title}">
+    <meta property="og:description" content="${article.description}">
+    <meta property="article:published_time" content="${article.publishDate}">
+    <meta property="article:modified_time" content="${article.lastModified}">
+    <meta property="article:section" content="${article.category}">
+    
+    <!-- 添加结构化数据 -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "${article.title}",
+        "description": "${article.description}",
+        "image": "${article.imageURL}",
+        "datePublished": "${article.publishDate}",
+        "dateModified": "${article.lastModified}",
+        "author": {
+            "@type": "Organization",
+            "name": "迪拜新游艇 New Yachting"
+        }
+    }
+    </script>
+
+    <!-- 样式和脚本引用 -->
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode.js@1.0.0/qrcode.min.js"></script>
+    <script src="../share.js"></script>
+    <script src="../article.js"></script>
+    <script src="../comments.js"></script>
+</head>
+<body>
+    <header>
+        <!-- 导航栏 -->
+    </header>
+
+    <main class="article-page">
+        <article class="article-content">
+            <div class="article-header">
+                <div class="category-label">${article.category}</div>
+                <h1>${article.title}</h1>
+                <div class="article-meta">
+                    <span class="date">
+                        <i class="far fa-calendar"></i>
+                        ${article.publishDate}
+                    </span>
+                    <span class="source">
+                        <i class="fas fa-link"></i>
+                        来源：${article.source}
+                    </span>
+                    <span class="views">
+                        <i class="far fa-eye"></i>
+                        阅读：${article.viewCount}
+                    </span>
+                </div>
+            </div>
+
+            <div class="article-body">
+                ${article.content}
+            </div>
+
+            <div class="article-footer">
+                <div class="tags">
+                    ${article.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                </div>
+                <div class="share-buttons">
+                    <h3>分享文章</h3>
+                    <button class="share-btn" data-platform="wechat">
+                        <i class="fab fa-weixin"></i> 微信
+                    </button>
+                    <button class="share-btn" data-platform="weibo">
+                        <i class="fab fa-weibo"></i> 微博
+                    </button>
+                    <button class="share-btn" data-platform="linkedin">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <aside class="article-sidebar">
+            <section class="related-articles">
+                <h3>相关文章</h3>
+                <div class="related-list">
+                    <a href="#" class="related-item">
+                        <h4>相关文章标题1</h4>
+                        <span class="date">2024-03-20</span>
+                    </a>
+                    <a href="#" class="related-item">
+                        <h4>相关文章标题2</h4>
+                        <span class="date">2024-03-19</span>
+                    </a>
+                </div>
+            </section>
+        </aside>
+    </main>
+
+    <footer>
+        <!-- 页脚 -->
+    </footer>
+</body>
+</html> 

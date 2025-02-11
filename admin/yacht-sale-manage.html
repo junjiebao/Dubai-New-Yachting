@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>出售游艇管理 - 迪拜新游艇</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="https://cdn.tiny.cloud/1/your-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/compressorjs/1.1.1/compressor.min.js"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="sidebar">
+            <ul class="nav-menu">
+                <li><a href="blog-manage.html">
+                    <i class="fas fa-newspaper"></i>
+                    游艇资讯管理
+                </a></li>
+                <li><a href="yacht-sale-manage.html" class="active">
+                    <i class="fas fa-ship"></i>
+                    出售游艇管理
+                </a></li>
+                <li><a href="yacht-rental-manage.html">
+                    <i class="fas fa-anchor"></i>
+                    租赁游艇管理
+                </a></li>
+            </ul>
+        </div>
+
+        <main class="main-content">
+            <div class="content-header">
+                <h1>出售游艇管理</h1>
+                <button class="btn add-btn" onclick="showAddYachtForm()">添加游艇</button>
+            </div>
+
+            <div class="yacht-list">
+                <!-- 游艇列表将由JavaScript动态加载 -->
+            </div>
+
+            <!-- 添加/编辑游艇表单 -->
+            <div class="yacht-form-modal">
+                <div class="form-container">
+                    <form id="yachtForm">
+                        <h2>添加游艇</h2>
+                        
+                        <div class="form-group">
+                            <label for="name">游艇名称</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="brand">品牌</label>
+                            <input type="text" id="brand" name="brand" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="length">长度（米）</label>
+                            <input type="number" id="length" name="length" step="0.01" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price">价格（美元）</label>
+                            <input type="number" id="price" name="price" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="condition">状态</label>
+                            <select id="condition" name="condition" required>
+                                <option value="new">全新</option>
+                                <option value="used">二手</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="year">年份</label>
+                            <input type="number" id="year" name="year" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">描述</label>
+                            <textarea id="description" name="description" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="image">游艇图片</label>
+                            <input type="file" id="image" name="image" accept="image/*" required>
+                            <div class="image-preview"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>规格参数</label>
+                            <div class="specs-inputs">
+                                <input type="text" name="beam" placeholder="船宽" required>
+                                <input type="text" name="speed" placeholder="最高速度" required>
+                                <input type="number" name="tonnage" placeholder="总吨位" required>
+                                <input type="number" name="guests" placeholder="载客人数" required>
+                                <input type="number" name="crew" placeholder="船员数" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="detailLink">详情文档链接</label>
+                            <input type="url" id="detailLink" name="detailLink" required>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn save-btn">保存</button>
+                            <button type="button" class="btn cancel-btn" onclick="hideYachtForm()">取消</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="yacht-sale-manage.js"></script>
+</body>
+</html> 

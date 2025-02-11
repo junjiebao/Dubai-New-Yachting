@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${categoryName} - 迪拜新游艇</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header>
+        <!-- 导航栏 -->
+    </header>
+
+    <main class="category-page ${category}-section">
+        <div class="category-header">
+            <h1>${categoryName}</h1>
+            <p class="category-description">${categoryDescription}</p>
+        </div>
+
+        <div class="articles-grid">
+            <!-- 文章将通过JavaScript动态加载 -->
+        </div>
+
+        <button class="load-more">加载更多</button>
+    </main>
+
+    <footer>
+        <!-- 页脚 -->
+    </footer>
+
+    <script src="/category-page.js"></script>
+    <script>
+        new CategoryPage('${category}');
+    </script>
+</body>
+</html> 

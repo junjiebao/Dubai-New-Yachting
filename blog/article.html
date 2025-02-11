@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章详情 - 迪拜新游艇</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* 文章页面特定样式 */
+        .article-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .article-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #22577E;
+        }
+
+        .article-meta {
+            color: #666;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .article-meta i {
+            color: #22577E;
+        }
+
+        .article-body {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .article-body img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+
+        .article-body p {
+            margin: 1.5rem 0;
+        }
+
+        .article-tags {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: #f5f5f5;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .article-actions {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .share-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            background: #22577E;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .share-btn:hover {
+            background: #1a4563;
+        }
+
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 1.8rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .article-actions {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo-container">
+                <img src="../images/blue logo only.png" alt="迪拜新游艇 Logo" class="logo-img">
+                <div class="logo">
+                    <div class="logo-cn">迪拜新游艇</div>
+                    <div class="logo-en">New Yachting LLC</div>
+                </div>
+            </div>
+            <button class="mobile-nav-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="../buy.html">购买</a></li>
+                <li><a href="../index.html#rent">租赁</a></li>
+                <li><a href="../index.html#build">出售</a></li>
+                <li><a href="../blog.html">游艇资讯</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="article-container">
+        <article>
+            <div class="article-header">
+                <h1 class="article-title"></h1>
+                <div class="article-meta">
+                    <span class="article-date">
+                        <i class="far fa-calendar"></i>
+                        <span></span>
+                    </span>
+                    <span class="article-category">
+                        <i class="far fa-folder"></i>
+                        <span></span>
+                    </span>
+                    <span class="article-source">
+                        <i class="far fa-newspaper"></i>
+                        <span></span>
+                    </span>
+                </div>
+            </div>
+            <img class="article-cover" alt="文章封面">
+            <div class="article-body"></div>
+            <div class="article-tags"></div>
+            <div class="article-actions">
+                <div class="share-buttons">
+                    <button class="share-btn" onclick="shareToWeChat()">
+                        <i class="fab fa-weixin"></i> 微信
+                    </button>
+                    <button class="share-btn" onclick="shareToWeibo()">
+                        <i class="fab fa-weibo"></i> 微博
+                    </button>
+                </div>
+                <a href="../blog.html" class="share-btn">
+                    <i class="fas fa-arrow-left"></i> 返回列表
+                </a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <section id="contact" class="contact-section">
+            <h2>联系我们</h2>
+            <div class="contact-info">
+                <div class="phone">
+                    <i class="fas fa-phone"></i>
+                    Whatsapp/电话: +971 56 101 8837 (UAE); +968 9788 0718 (Oman); 中国电话(China)： +86 136 0181 9937
+                </div>
+                <div class="email">
+                    <i class="fas fa-envelope"></i>
+                    邮箱: Info@xinyouting.com; Sales@xinyouting.com; Charter@xinyouting.com; Build@xinyouting.com
+                </div>
+                <div class="address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    地址: Dubai Harbor, Dubai Marina, Dubai, United Arab Emirates
+                </div>
+            </div>
+        </section>
+        <p>&copy; 2022-2025 迪拜新游艇 New Yachting. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const articleId = urlParams.get('id');
+            
+            if (articleId) {
+                const articles = JSON.parse(localStorage.getItem('articles')) || [];
+                const article = articles.find(a => a.id === articleId);
+                
+                if (article) {
+                    // 更新页面标题
+                    document.title = `${article.title} - 迪拜新游艇`;
+                    
+                    // 更新文章内容
+                    document.querySelector('.article-title').textContent = article.title;
+                    document.querySelector('.article-date span').textContent = new Date(article.date).toLocaleDateString('zh-CN');
+                    document.querySelector('.article-category span').textContent = getCategoryName(article.category);
+                    document.querySelector('.article-source span').textContent = article.source || '原创';
+                    const coverImage = document.querySelector('.article-cover');
+                    coverImage.src = article.image ? '../' + article.image : '../images/blog/default-cover.jpg';
+                    coverImage.onerror = function() {
+                        this.src = '../images/blog/default-cover.jpg';
+                    };
+                    document.querySelector('.article-body').innerHTML = article.content;
+
+                    // 添加标签
+                    if (article.tags && article.tags.length > 0) {
+                        const tagsHtml = article.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+                        document.querySelector('.article-tags').innerHTML = tagsHtml;
+                    }
+                }
+            }
+        });
+
+        function getCategoryName(category) {
+            const categories = {
+                news: '行业新闻',
+                reviews: '游艇评测',
+                shows: '展会动态',
+                lifestyle: '游艇生活'
+            };
+            return categories[category] || category;
+        }
+
+        function shareToWeChat() {
+            // 实现微信分享
+            alert('请截图后分享到微信');
+        }
+
+        function shareToWeibo() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.title);
+            window.open(`http://service.weibo.com/share/share.php?url=${url}&title=${title}`);
+        }
+    </script>
+</body>
+</html> 

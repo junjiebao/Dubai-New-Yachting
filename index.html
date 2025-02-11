@@ -468,29 +468,29 @@
 <body>
 <header>
 <nav>
-    <!-- 添加logo图片和保持原有字体大小的标题 -->
     <div class="logo-container">
-      <img src="images\logo blue.png" alt="迪拜新游艇 Logo" class="logo-img">
-      <div class="logo">
-        <div class="logo-cn">迪拜新游艇</div>
-        <div class="logo-en">New Yachting LLC</div>
-      </div>
+        <img src="images/blue logo only.png" alt="迪拜新游艇 Logo" class="logo-img">
+        <div class="logo">
+            <div class="logo-cn">迪拜新游艇</div>
+            <div class="logo-en">New Yachting LLC</div>
+        </div>
     </div>
-    <button class="mobile-nav-toggle">
-      <i class="fas fa-bars"></i>
-    </button>
-  <ul class="nav-links">
-      <li><a href="#buy">购买</a></li>
-      <li><a href="#rent">租赁</a></li>
-      <li><a href="#build">出售</a></li>
-    <li><a href="#contact">联系我们</a></li>
-  </ul>
+    <ul class="nav-links">
+        <li><a href="index.html" class="active">首页</a></li>
+        <li><a href="buy.html">游艇购买</a></li>
+        <li><a href="rent.html">游艇租赁</a></li>
+        <li><a href="blog.html">游艇资讯</a></li>
+        <li><a href="index.html#contact">联系我们</a></li>
+    </ul>
+    <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </div>
 </nav>
 </header>
 
   <section id="buy" class="section">
-    <h2>购买：</h2>
-    <h4>协助您寻觅或新建心仪的游艇</h4>
+    <h2>游艇购买</h2>
+    <p>为您提供全球顶级品牌游艇，专业的购买建议和完善的售后服务</p>
     <div class="yacht-grid">
       <!-- 1. 2014 M/Y Queen Alla -->
       <div class="yacht-card">
@@ -834,6 +834,7 @@
                 </div>
               </div>    
     </div>
+
   </section>
 
   <section id="rent" class="section">
@@ -1588,6 +1589,9 @@
       </div>
     </section>
     <p>&copy; 2022-2025 迪拜新游艇 New Yachting. All rights reserved.</p>
+    <p class="admin-link">
+        <a href="file:///D:/NewYachtingFZE/admin-login.html" style="color: #666; font-size: 0.8em; text-decoration: none;">管理入口</a>
+    </p>
   </footer>
 
   <div class="floating-contact">
@@ -1629,6 +1633,61 @@
         });
       });
     });
+
+    // 从localStorage加载游艇数据
+    function loadFeaturedYachts() {
+        // 加载出售游艇
+        const saleYachts = JSON.parse(localStorage.getItem('buyYachts')) || [];
+        const featuredSaleYachts = getRandomYachts(saleYachts, 6);
+        
+        const saleContainer = document.getElementById('sale-yachts');
+        saleContainer.innerHTML = featuredSaleYachts.map(yacht => `
+            <div class="yacht-card">
+                <img src="${yacht.image || 'images/default-yacht.jpg'}" alt="${yacht.name}" loading="lazy">
+                <h3>${yacht.name}</h3>
+                <p class="price">$${yacht.price.toLocaleString()}</p>
+                <p class="description">${yacht.description}</p>
+                <div class="button-group">
+                    <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+                    <a href="${yacht.detailLink || '#'}" target="_blank" class="btn btn-secondary">查看详情</a>
+                </div>
+            </div>
+        `).join('');
+
+        // 加载租赁游艇
+        const rentYachts = JSON.parse(localStorage.getItem('rentalYachts')) || [];
+        const featuredRentYachts = getRandomYachts(rentYachts, 6);
+        
+        const rentContainer = document.getElementById('rent-yachts');
+        rentContainer.innerHTML = featuredRentYachts.map(yacht => `
+            <div class="yacht-card">
+                <img src="${yacht.image || 'images/default-yacht.jpg'}" alt="${yacht.name}" loading="lazy">
+                <h3>${yacht.name}</h3>
+                <p class="price">日租: $${yacht.dailyPrice.toLocaleString()}</p>
+                <p class="description">${yacht.description}</p>
+                <div class="button-group">
+                    <button class="btn" onclick="copyAndRedirect()">联系我们</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // 随机获取指定数量的游艇
+    function getRandomYachts(yachts, count) {
+        const shuffled = [...yachts].sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, count);
+    }
+
+    // 切换标签页
+    function showTab(tab) {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelector(`[onclick="showTab('${tab}')"]`).classList.add('active');
+        
+        document.getElementById('sale-yachts').style.display = tab === 'sale' ? 'grid' : 'none';
+        document.getElementById('rent-yachts').style.display = tab === 'rent' ? 'grid' : 'none';
+    }
+
+    document.addEventListener('DOMContentLoaded', loadFeaturedYachts);
   </script>
 </body>
 </html>

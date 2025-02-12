@@ -30,6 +30,126 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+}
+
+/* 固定导航栏样式 */
+.nav-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(26, 83, 92, 0.95);
+  z-index: 1000;
+  padding: 0.5rem 2rem;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+}
+
+.nav-fixed.show {
+  transform: translateY(0);
+}
+
+.nav-fixed .logo-container,
+.nav-fixed .hero {
+  display: none;
+}
+
+.nav-fixed .nav-links {
+  display: flex !important; /* 强制显示导航链接 */
+  justify-content: center;
+  margin: 0 auto;
+  position: static;
+  background: none;
+  padding: 0;
+}
+
+.nav-fixed .nav-links li {
+  margin: 0 1rem;
+}
+
+.nav-fixed .nav-links a {
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.nav-fixed .nav-links a:hover,
+.nav-fixed .nav-links a.active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+  .mobile-nav-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(26, 83, 92, 0.95);
+    padding: 1rem;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    z-index: 999;
+    margin: 0;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 0.8rem 1rem;
+    width: 100%;
+    color: white;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    margin: 0.5rem 0;
+    transition: background-color 0.3s ease;
+  }
+
+  .nav-links a:hover,
+  .nav-links a:active {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  /* 固定导航栏在移动端的特殊样式 */
+  .nav-fixed .mobile-nav-toggle {
+    display: none; /* 隐藏固定导航栏中的菜单按钮 */
+  }
+
+  .nav-fixed .nav-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .nav-fixed .nav-links li {
+    width: auto;
+  }
+
+  .nav-fixed .nav-links a {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.8rem;
+    margin: 0;
+    white-space: nowrap;
+  }
 }
 
 .nav-links {
@@ -332,13 +452,13 @@ footer p {
   padding: 1rem 0;
 }
 
-.admin-link {
-  margin-top: 0.5rem !important;
-  opacity: 0.7;
+footer a {
+  color: rgb(214, 150, 11);
+  text-decoration: none;
 }
 
-.admin-link a:hover {
-  text-decoration: underline !important;
+footer a:hover {
+  text-decoration: underline;
 }
 
 /* 移动端优化 */
@@ -1206,6 +1326,71 @@ footer p {
   font-size: 1.5rem;
   cursor: pointer;
   padding: 0.5rem;
+  position: relative;
+  z-index: 1000;
+}
+
+@media (max-width: 768px) {
+  .mobile-nav-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(26, 83, 92, 0.95);
+    padding: 1rem;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    z-index: 999;
+    margin: 0;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 0.5rem 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 0.8rem 1rem;
+    width: 100%;
+    color: white;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    margin: 0.5rem 0;
+    transition: background-color 0.3s ease;
+  }
+
+  .nav-links a:hover,
+  .nav-links a:active {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .nav-fixed {
+    padding: 0.5rem;
+  }
+
+  .nav-fixed .nav-links {
+    position: static;
+    display: flex;
+    padding: 0;
+  }
+
+  .nav-fixed .nav-links a {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
 }
 
 /* 内容布局优化 */

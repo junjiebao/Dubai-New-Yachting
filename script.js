@@ -127,3 +127,24 @@ function sortRentalYachtsByPrice() {
   rentOptions.innerHTML = '';
   rentalCards.forEach(card => rentOptions.appendChild(card));
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    // 移动端导航栏控制
+    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (mobileNavToggle) {
+        mobileNavToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            // 切换图标
+            const icon = mobileNavToggle.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+    }
+});

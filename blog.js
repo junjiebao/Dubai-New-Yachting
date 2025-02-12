@@ -13,16 +13,44 @@ class BlogManager {
         await this.loadArticles();
         this.bindEvents();
         this.filterArticles(this.currentCategory);
+        this.initMobileNav();
+    }
+
+    initMobileNav() {
+        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (mobileNavToggle && navLinks) {
+            // 确保事件只绑定一次
+            mobileNavToggle.removeEventListener('click', this.toggleNav);
+            mobileNavToggle.addEventListener('click', this.toggleNav);
+        }
+    }
+
+    toggleNav = (event) => {
+        event.preventDefault();
+        const navLinks = document.querySelector('.nav-links');
+        const icon = event.currentTarget.querySelector('i');
+        
+        navLinks.classList.toggle('active');
+        
+        if (icon.classList.contains('fa-bars')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
     }
 
     addSampleArticles() {
         const sampleArticles = [
             {
                 id: '1',
-                title: '2024迪拜国际游艇展即将盛大开幕',
+                title: '2024年迪拜国际游艇展3月1日至5日在迪拜港举行',
                 category: 'shows',
                 content: `
-                    <p>2024迪拜国际游艇展（Dubai International Boat Show）将于3月1日至5日在迪拜港举行。本届展会预计将吸引来自全球超过800家参展商，展出超过200艘游艇。</p>
+                    <p>2024年迪拜国际游艇展（Dubai International Boat Show）将于3月1日至5日在迪拜港举行，这是中东地区最具影响力的游艇展会。本届展会预计将吸引来自全球超过800家参展商，展出超过200艘游艇。</p>
                     <p>展会亮点包括：</p>
                     <ul>
                         <li>全球首发5艘超级游艇</li>
@@ -99,7 +127,9 @@ class BlogManager {
             }
         ];
 
-        localStorage.setItem('articles', JSON.stringify(sampleArticles));
+        // 确保新文章显示在顶部
+        this.articles = [...sampleArticles.reverse(), ...this.articles];
+        localStorage.setItem('articles', JSON.stringify(this.articles));
     }
 
     loadArticles() {
@@ -145,6 +175,9 @@ class BlogManager {
     }
 
     renderArticles(articles) {
+        // 按日期排序，最新的在前面
+        articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+        
         const container = document.querySelector('.blog-grid');
         if (!container) return;
 

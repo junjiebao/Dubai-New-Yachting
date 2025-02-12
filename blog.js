@@ -181,12 +181,18 @@ class BlogManager {
         const container = document.querySelector('.blog-grid');
         if (!container) return;
 
+        if (articles.length === 0) {
+            container.innerHTML = '<div class="no-posts">暂无相关文章</div>';
+            return;
+        }
+
         container.innerHTML = articles.map(article => `
             <article class="blog-card" onclick="window.location.href='blog/article.html?id=${article.id}'" style="cursor: pointer;">
                 ${article.image ? `
                     <img src="${article.image}" 
                          alt="${article.title}"
-                         onerror="this.parentElement.removeChild(this)">
+                         onerror="this.src='images/default-blog.jpg'"
+                    >
                 ` : ''}
                 <div class="blog-content">
                     <span class="category">${this.getCategoryName(article.category)}</span>

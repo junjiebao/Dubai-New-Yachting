@@ -475,16 +475,17 @@
             <div class="logo-en">New Yachting LLC</div>
         </div>
     </div>
-    <ul class="nav-links">
+    <button class="mobile-nav-toggle" aria-controls="nav-links" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+        <i class="fas fa-times"></i>
+    </button>
+    <ul class="nav-links" id="nav-links" data-visible="false">
         <li><a href="index.html" class="active">首页</a></li>
         <li><a href="buy.html">游艇购买</a></li>
         <li><a href="rent.html">游艇租赁</a></li>
         <li><a href="blog.html">游艇资讯</a></li>
-        <li><a href="index.html#contact">联系我们</a></li>
+        <li><a href="#contact">联系我们</a></li>
     </ul>
-    <div class="menu-toggle">
-        <i class="fas fa-bars"></i>
-    </div>
 </nav>
 </header>
 
@@ -1686,6 +1687,30 @@
     }
 
     document.addEventListener('DOMContentLoaded', loadFeaturedYachts);
+  </script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+      // 获取移动导航按钮和导航链接列表的元素
+      const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+      const navLinks = document.querySelector('.nav-links');
+  
+      // 添加点击事件监听器到移动导航按钮
+      mobileNavToggle.addEventListener('click', function() {
+          // 切换导航链接列表的可见性
+          const isVisible = navLinks.getAttribute('data-visible') === 'true';
+          navLinks.setAttribute('data-visible', !isVisible);
+          mobileNavToggle.setAttribute('aria-expanded', !isVisible);
+  
+          // 切换使用的图标
+          if (!isVisible) {
+              this.firstElementChild.style.display = 'none'; // fa-bars
+              this.lastElementChild.style.display = 'inline'; // fa-times
+          } else {
+              this.firstElementChild.style.display = 'inline'; // fa-bars
+              this.lastElementChild.style.display = 'none'; // fa-times
+          }
+      });
+  });
   </script>
 </body>
 </html>

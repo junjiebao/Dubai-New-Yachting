@@ -77,9 +77,14 @@
         <main class="admin-main">
             <header class="admin-header">
                 <h1>新闻管理</h1>
-                <button class="btn add-article-btn" onclick="showAddArticleForm()">
-                    <i class="fas fa-plus"></i> 添加新文章
-                </button>
+                <div class="admin-actions">
+                    <button class="btn add-article-btn" onclick="showAddArticleForm()">
+                        <i class="fas fa-plus"></i> 添加新文章
+                    </button>
+                    <button class="btn btn-logout" onclick="logout()" type="button">
+                        <i class="fas fa-sign-out-alt"></i> 退出登录
+                    </button>
+                </div>
             </header>
 
             <div class="article-list">

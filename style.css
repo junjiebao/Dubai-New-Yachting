@@ -666,7 +666,7 @@ footer a:hover {
 /* 博客页面样式 */
 .blog-section {
     max-width: 1200px;
-    margin: -3rem auto 0;  /* 使内容区域略微上移 */
+    margin: -3rem auto 0;
     padding: 2rem;
     background: white;
     border-radius: 8px;
@@ -699,6 +699,7 @@ footer a:hover {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
+    min-height: 200px;
 }
 
 .blog-card {
@@ -1749,4 +1750,46 @@ input, select, textarea {
 
 .btn-logout:hover {
     background-color: #c82333;
+}
+
+/* 登录页面样式 */
+.login-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* 移动端登录表单适配 */
+@media (max-width: 768px) {
+    .login-container {
+        margin: 50px auto;
+        padding: 1.5rem;
+        width: 90%;
+    }
+
+    .login-container input[type="password"] {
+        font-size: 16px; /* 防止iOS自动缩放 */
+        padding: 0.8rem;
+        width: 100%;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    .login-container button[type="submit"] {
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 16px;
+        margin-top: 1rem;
+    }
+}
+
+.no-posts {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+    font-size: 1.1rem;
 }

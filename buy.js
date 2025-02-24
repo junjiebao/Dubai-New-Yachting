@@ -374,7 +374,7 @@ class YachtManager {
 
         return `
             <div class="yacht-card">
-                <img src="${yacht.image || 'images/default-yacht.jpg'}" alt="${yacht.name}" onerror="this.src='images/default-yacht.jpg'" loading="lazy">
+                <img src="${yacht.image || 'images/yacht1.jpg'}" alt="${yacht.name}" onerror="this.src='images/yacht1.jpg'" loading="lazy">
                 <h3>${yacht.name}</h3>
                 <div class="specs">
                     <p><strong>长度:</strong> ${yacht.length} m</p>

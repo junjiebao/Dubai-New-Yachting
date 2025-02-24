@@ -206,31 +206,40 @@ class BlogManager {
     }
 
     renderArticles(articles) {
-        // 按日期排序，最新的在前面
-        articles.sort((a, b) => new Date(b.date) - new Date(a.date));
-        
         const container = document.querySelector('.blog-grid');
         if (!container) return;
 
-        container.innerHTML = articles.map(article => `
-            <article class="blog-card" onclick="window.location.href='blog/article.html?id=${article.id}'" style="cursor: pointer;">
-                ${article.image ? `
-                    <img src="${article.image}" 
-                         alt="${article.title}"
-                         onerror="this.parentElement.removeChild(this)">
-                ` : ''}
-                <div class="blog-content">
-                    <span class="category">${this.getCategoryName(article.category)}</span>
-                    <h2>${article.title}</h2>
-                    <p class="excerpt">${this.getExcerpt(article.content)}</p>
-                    <div class="blog-meta">
-                        <span class="date">${new Date(article.date).toLocaleDateString('zh-CN')}</span>
-                        ${article.source ? `<span class="source">来源: ${article.source}</span>` : ''}
+        container.innerHTML = articles.map(article => {
+            // 获取文章图片
+            let imageUrl = article.image;
+            if (!imageUrl) {
+                // 如果没有上传的封面图片，尝试从文章内容中提取第一张图片
+                const imgMatch = article.content.match(/<img[^>]+src="([^">]+)"/);
+                if (imgMatch && imgMatch[1]) {
+                    imageUrl = imgMatch[1];
+                }
+            }
+
+            const date = new Date(article.date).toLocaleDateString('zh-CN');
+            
+            return `
+                <article class="blog-card">
+                    <div class="article-image">
+                        ${imageUrl ? 
+                            `<img src="${imageUrl}" alt="${article.title}" onerror="this.parentElement.style.display='none'">` : 
+                            '<div class="no-image"></div>'
+                        }
                     </div>
-                    <span class="read-more">阅读全文</span>
-                </div>
-            </article>
-        `).join('');
+                    <div class="article-content">
+                        <span class="category">${this.getCategoryName(article.category)}</span>
+                        <h2>${article.title}</h2>
+                        <div class="article-date">${date}</div>
+                        <p>${this.getExcerpt(article.content)}</p>
+                        <a href="blog/article.html?id=${article.id}" class="btn">阅读更多</a>
+                    </div>
+                </article>
+            `;
+        }).join('');
     }
 
     getCategoryName(category) {

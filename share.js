@@ -47,5 +47,53 @@ function showQRCode(url) {
     });
 }
 
+// 添加社交媒体按钮到页面
+function addSocialButtons() {
+    const socialButtons = document.createElement('div');
+    socialButtons.className = 'social-buttons';
+    socialButtons.innerHTML = `
+        <a href="javascript:void(0)" class="social-button wechat" onclick="showWeChatQR()">
+            <i class="fab fa-weixin"></i>
+        </a>
+        <a href="https://wa.me/971561018837" target="_blank" rel="noopener noreferrer" class="social-button whatsapp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    `;
+
+    const modal = document.createElement('div');
+    modal.id = 'wechatModal';
+    modal.className = 'modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <span class="close" onclick="closeWeChatQR()">&times;</span>
+            <img src="images/WeChat QR.jpg" alt="WeChat QR Code">
+        </div>
+    `;
+
+    document.body.appendChild(socialButtons);
+    document.body.appendChild(modal);
+}
+
+// 显示微信二维码
+function showWeChatQR() {
+    document.getElementById('wechatModal').style.display = 'block';
+}
+
+// 关闭微信二维码
+function closeWeChatQR() {
+    document.getElementById('wechatModal').style.display = 'none';
+}
+
+// 点击弹窗外部关闭
+window.onclick = function(event) {
+    const modal = document.getElementById('wechatModal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+}
+
 // 页面加载完成后初始化分享按钮
-document.addEventListener('DOMContentLoaded', initShareButtons); 
+document.addEventListener('DOMContentLoaded', initShareButtons);
+
+// 页面加载完成后添加社交媒体按钮
+document.addEventListener('DOMContentLoaded', addSocialButtons); 

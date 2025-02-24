@@ -666,7 +666,7 @@ footer a:hover {
 /* 博客页面样式 */
 .blog-section {
     max-width: 1200px;
-    margin: -3rem auto 0;
+    margin: -3rem auto 0;  /* 使内容区域略微上移 */
     padding: 2rem;
     background: white;
     border-radius: 8px;
@@ -699,19 +699,20 @@ footer a:hover {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
-    min-height: 200px;
 }
 
 .blog-card {
     background: white;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
 }
 
 .blog-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .blog-card img {
@@ -721,32 +722,7 @@ footer a:hover {
 }
 
 .blog-content {
-    padding: 1.5rem;
-}
-
-.blog-meta {
-    display: flex;
-    gap: 1rem;
-    color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-}
-
-.blog-excerpt {
-    color: #444;
-    margin-bottom: 1rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.read-more {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 500;
-    display: inline-block;
-    margin-top: 1rem;
+    padding: 1rem;
 }
 
 /* 移动端适配 */
@@ -1652,6 +1628,7 @@ input, select, textarea {
 /* 确保卡片内的所有文本可选 */
 .blog-card * {
     user-select: text;
+    -webkit-user-select: text;
 }
 
 /* 防止点击事件冒泡（如果需要） */
@@ -1659,137 +1636,4 @@ input, select, textarea {
 .blog-card button {
     position: relative;
     z-index: 1;
-}
-
-/* 博客文章卡片样式 */
-.blog-card {
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-}
-
-.blog-card:hover {
-    transform: translateY(-5px);
-}
-
-.blog-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.blog-content {
-    padding: 1.5rem;
-}
-
-.blog-meta {
-    display: flex;
-    gap: 1rem;
-    color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-}
-
-.blog-excerpt {
-    color: #444;
-    margin-bottom: 1rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.read-more {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 500;
-    display: inline-block;
-    margin-top: 1rem;
-}
-
-/* 博客分类按钮样式 */
-.blog-categories {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-}
-
-.category-btn {
-    padding: 0.5rem 1rem;
-    border: none;
-    background: rgba(26, 83, 92, 0.1);
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.category-btn.active {
-    background: var(--primary-color);
-    color: white;
-}
-
-/* 管理页面头部样式 */
-.admin-actions {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-}
-
-.btn-logout {
-    background-color: #dc3545;
-    color: white;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.btn-logout:hover {
-    background-color: #c82333;
-}
-
-/* 登录页面样式 */
-.login-container {
-    max-width: 400px;
-    margin: 100px auto;
-    padding: 2rem;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-/* 移动端登录表单适配 */
-@media (max-width: 768px) {
-    .login-container {
-        margin: 50px auto;
-        padding: 1.5rem;
-        width: 90%;
-    }
-
-    .login-container input[type="password"] {
-        font-size: 16px; /* 防止iOS自动缩放 */
-        padding: 0.8rem;
-        width: 100%;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-    }
-
-    .login-container button[type="submit"] {
-        width: 100%;
-        padding: 0.8rem;
-        font-size: 16px;
-        margin-top: 1rem;
-    }
-}
-
-.no-posts {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 2rem;
-    color: #666;
-    font-size: 1.1rem;
 }

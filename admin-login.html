@@ -66,14 +66,14 @@
     <header>
         <nav>
             <div class="logo-container">
-                <img src="./images/blue logo only.png" alt="迪拜新游艇 Logo" class="logo-img">
+                <img src="images/blue logo only.png" alt="迪拜新游艇 Logo" class="logo-img">
                 <div class="logo">
                     <div class="logo-cn">迪拜新游艇</div>
                     <div class="logo-en">New Yachting LLC</div>
                 </div>
             </div>
             <ul class="nav-links">
-                <li><a href="admin/blog-manage.html">资讯管理</a></li>
+                <li><a href="blog-manage.html">资讯管理</a></li>
             </ul>
         </nav>
     </header>
@@ -81,10 +81,10 @@
     <main>
         <div class="login-container">
             <h2 style="text-align: center; margin-bottom: 2rem;">管理员登录</h2>
-            <form id="loginForm" onsubmit="return handleLogin(event)">
+            <form class="login-form" id="loginForm" onsubmit="return handleLogin(event)">
                 <div class="form-group">
                     <label for="password">密码</label>
-                    <input type="password" id="password" name="password" required autocomplete="current-password">
+                    <input type="password" id="password" required>
                 </div>
                 <button type="submit" class="login-btn">登录</button>
                 <div class="error-message" id="errorMessage">密码错误，请重试</div>
@@ -101,8 +101,8 @@
             
             if (password === correctPassword) {
                 // 登录成功，保存登录状态并跳转
-                localStorage.setItem('adminLoggedIn', 'true');
-                window.location.href = 'admin/blog-manage.html';
+                sessionStorage.setItem('adminLoggedIn', 'true');
+                window.location.href = 'file:///D:/NewYachtingFZE/admin/blog-manage.html';
             } else {
                 // 显示错误信息
                 errorMessage.style.display = 'block';
@@ -112,8 +112,8 @@
         }
 
         // 检查是否已登录
-        if (localStorage.getItem('adminLoggedIn') === 'true') {
-            window.location.href = 'admin/blog-manage.html';
+        if (sessionStorage.getItem('adminLoggedIn') === 'true') {
+            window.location.href = 'file:///D:/NewYachtingFZE/admin/blog-manage.html';
         }
     </script>
 </body>

@@ -6,6 +6,21 @@
     <title>文章详情 - 迪拜新游艇</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script>
+        // Firebase 配置
+        const firebaseConfig = {
+            apiKey: "AIzaSyA9AK9xPGgfPdGYYdfFt8KS892qcuYS3bQ",
+            authDomain: "newyachting-blog.firebaseapp.com",
+            projectId: "newyachting-blog",
+            storageBucket: "newyachting-blog.firebasestorage.app",
+            messagingSenderId: "133522516860",
+            appId: "1:133522516860:web:552b61326ad8ab7b7f12f9",
+            measurementId: "G-12LYR4JY88"
+        };
+        firebase.initializeApp(firebaseConfig);
+    </script>
     <style>
         /* 文章页面特定样式 */
         .article-container {
@@ -132,16 +147,16 @@
                     <div class="logo-en">New Yachting LLC</div>
                 </div>
             </div>
-            <button class="mobile-nav-toggle" aria-controls="nav-links" aria-expanded="false">
+            <button class="mobile-nav-toggle" title="切换导航菜单">
                 <i class="fas fa-bars"></i>
-                <i class="fas fa-times"></i>
             </button>
-            <ul class="nav-links" id="nav-links" data-visible="false">
+            <ul class="nav-links">
                 <li><a href="../index.html">首页</a></li>
-                <li><a href="../buy.html">游艇购买</a></li>
-                <li><a href="../rent.html">游艇租赁</a></li>
+                <li><a href="../buy.html">购买</a></li>
+                <li><a href="../index.html#rent">租赁</a></li>
+                <li><a href="../index.html#build">出售</a></li>
                 <li><a href="../blog.html">游艇资讯</a></li>
-                <li><a href="../index.html#contact">联系我们</a></li>
+                <li><a href="#contact">联系我们</a></li>
             </ul>
         </nav>
     </header>
@@ -206,36 +221,61 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
+            // 获取文章ID
             const urlParams = new URLSearchParams(window.location.search);
             const articleId = urlParams.get('id');
             
-            if (articleId) {
-                const articles = JSON.parse(localStorage.getItem('articles')) || [];
-                const article = articles.find(a => a.id === articleId);
-                
-                if (article) {
-                    // 更新页面标题
-                    document.title = `${article.title} - 迪拜新游艇`;
-                    
-                    // 更新文章内容
-                    document.querySelector('.article-title').textContent = article.title;
-                    document.querySelector('.article-date span').textContent = new Date(article.date).toLocaleDateString('zh-CN');
-                    document.querySelector('.article-category span').textContent = getCategoryName(article.category);
-                    document.querySelector('.article-source span').textContent = article.source || '原创';
-                    const coverImage = document.querySelector('.article-cover');
-                    coverImage.src = article.image ? '../' + article.image : '../images/blog/default-cover.jpg';
-                    coverImage.onerror = function() {
-                        this.src = '../images/blog/default-cover.jpg';
-                    };
-                    document.querySelector('.article-body').innerHTML = article.content;
+            if (!articleId) {
+                window.location.href = '../blog.html';
+                return;
+            }
 
-                    // 添加标签
-                    if (article.tags && article.tags.length > 0) {
-                        const tagsHtml = article.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
-                        document.querySelector('.article-tags').innerHTML = tagsHtml;
-                    }
+            try {
+                // 从 Firestore 获取文章
+                const doc = await firebase.firestore()
+                    .collection('articles')
+                    .doc(articleId)
+                    .get();
+
+                if (!doc.exists) {
+                    alert('文章不存在');
+                    window.location.href = '../blog.html';
+                    return;
                 }
+
+                const article = doc.data();
+                
+                // 填充文章内容
+                document.querySelector('.article-title').textContent = article.title;
+                document.querySelector('.article-date span').textContent = 
+                    new Date(article.date).toLocaleDateString('zh-CN');
+                document.querySelector('.article-category span').textContent = 
+                    getCategoryName(article.category);
+                document.querySelector('.article-source span').textContent = 
+                    article.source || '本站原创';
+                
+                // 设置封面图片
+                const coverImg = document.querySelector('.article-cover');
+                if (article.image) {
+                    coverImg.src = article.image;
+                    coverImg.style.display = 'block';
+                } else {
+                    coverImg.style.display = 'none';
+                }
+                
+                // 设置文章内容
+                document.querySelector('.article-body').innerHTML = article.content;
+                
+                // 设置标签
+                if (article.tags && article.tags.length > 0) {
+                    document.querySelector('.article-tags').innerHTML = article.tags
+                        .map(tag => `<span class="tag">${tag}</span>`)
+                        .join('');
+                }
+            } catch (error) {
+                console.error('加载文章失败:', error);
+                alert('加载文章失败');
             }
         });
 
@@ -249,14 +289,15 @@
             return categories[category] || category;
         }
 
+        // 分享功能
         function shareToWeChat() {
-            // 实现微信分享
-            alert('请截图后分享到微信');
+            // 生成当前页面的二维码
+            alert('请截图分享给微信好友');
         }
 
         function shareToWeibo() {
             const url = encodeURIComponent(window.location.href);
-            const title = encodeURIComponent(document.title);
+            const title = encodeURIComponent(document.querySelector('.article-title').textContent);
             window.open(`http://service.weibo.com/share/share.php?url=${url}&title=${title}`);
         }
     </script>

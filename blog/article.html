@@ -6,6 +6,7 @@
     <title>文章详情 - 迪拜新游艇</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
     <script>
@@ -24,9 +25,9 @@
     <style>
         /* 文章页面特定样式 */
         .article-container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 2rem auto;
-            padding: 0 1rem;
+            padding: 0 2rem;
         }
 
         .article-header {
@@ -67,12 +68,19 @@
         .article-body img {
             max-width: 100%;
             height: auto;
-            border-radius: 4px;
-            margin: 1rem 0;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .article-body p {
             margin: 1.5rem 0;
+        }
+
+        .article-body h2, 
+        .article-body h3 {
+            margin: 2rem 0 1rem;
+            color: #22577E;
         }
 
         .article-tags {
@@ -118,6 +126,15 @@
 
         .share-btn:hover {
             background: #1a4563;
+        }
+
+        .article-cover {
+            width: 100%;
+            max-height: 600px;
+            object-fit: cover;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         @media (max-width: 768px) {
@@ -222,7 +239,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
-            // 获取文章ID
             const urlParams = new URLSearchParams(window.location.search);
             const articleId = urlParams.get('id');
             
@@ -246,6 +262,9 @@
 
                 const article = doc.data();
                 
+                // 设置页面标题
+                document.title = `${article.title} - 迪拜新游艇`;
+                
                 // 填充文章内容
                 document.querySelector('.article-title').textContent = article.title;
                 document.querySelector('.article-date span').textContent = 
@@ -264,8 +283,17 @@
                     coverImg.style.display = 'none';
                 }
                 
-                // 设置文章内容
-                document.querySelector('.article-body').innerHTML = article.content;
+                // 设置文章内容，确保图片正确显示
+                const content = article.content.replace(/<img/g, '<img loading="lazy"');
+                document.querySelector('.article-body').innerHTML = content;
+                
+                // 处理文章中的所有图片
+                document.querySelectorAll('.article-body img').forEach(img => {
+                    img.onclick = () => {
+                        window.open(img.src, '_blank');
+                    };
+                    img.style.cursor = 'pointer';
+                });
                 
                 // 设置标签
                 if (article.tags && article.tags.length > 0) {
@@ -301,5 +329,6 @@
             window.open(`http://service.weibo.com/share/share.php?url=${url}&title=${title}`);
         }
     </script>
+    <script src="../share.js"></script>
 </body>
 </html> 

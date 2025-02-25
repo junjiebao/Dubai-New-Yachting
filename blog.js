@@ -207,27 +207,20 @@ class BlogManager {
 
     renderArticles(articles) {
         const container = document.querySelector('.blog-grid');
-        if (!container) return;
-
         container.innerHTML = articles.map(article => {
-            // 获取文章图片
+            const date = new Date(article.date).toLocaleDateString('zh-CN');
             let imageUrl = article.image;
             if (!imageUrl) {
-                // 如果没有上传的封面图片，尝试从文章内容中提取第一张图片
                 const imgMatch = article.content.match(/<img[^>]+src="([^">]+)"/);
-                if (imgMatch && imgMatch[1]) {
-                    imageUrl = imgMatch[1];
-                }
+                imageUrl = imgMatch ? imgMatch[1] : '';
             }
-
-            const date = new Date(article.date).toLocaleDateString('zh-CN');
             
             return `
-                <article class="blog-card">
+                <a href="blog/article.html?id=${article.id}" class="blog-card">
                     <div class="article-image">
                         ${imageUrl ? 
-                            `<img src="${imageUrl}" alt="${article.title}" onerror="this.parentElement.style.display='none'">` : 
-                            '<div class="no-image"></div>'
+                            `<img src="${imageUrl}" alt="${article.title}" loading="lazy">` : 
+                            '<div class="no-image"><i class="fas fa-image"></i></div>'
                         }
                     </div>
                     <div class="article-content">
@@ -235,9 +228,8 @@ class BlogManager {
                         <h2>${article.title}</h2>
                         <div class="article-date">${date}</div>
                         <p>${this.getExcerpt(article.content)}</p>
-                        <a href="blog/article.html?id=${article.id}" class="btn">阅读更多</a>
                     </div>
-                </article>
+                </a>
             `;
         }).join('');
     }

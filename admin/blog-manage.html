@@ -30,6 +30,142 @@
         .nav-menu li a[href="../index.html"] i {
             margin-right: 8px;
         }
+
+        /* 编辑器容器样式 */
+        .editor-container {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            background: white;
+        }
+
+        /* 工具栏样式 */
+        #toolbar {
+            border-bottom: 1px solid #ddd;
+            padding: 8px;
+            background: #f8f9fa;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+        }
+
+        /* 编辑器内容区域样式 */
+        #editor {
+            min-height: 300px;
+            max-height: 800px;
+            overflow-y: auto;
+            padding: 1rem;
+            resize: vertical;
+            background: white;
+        }
+
+        /* Quill 编辑器样式优化 */
+        .ql-toolbar {
+            border: none !important;
+        }
+
+        .ql-container {
+            border: none !important;
+            font-size: 16px !important;
+        }
+
+        /* 编辑器工具栏按钮样式 */
+        .ql-formats {
+            margin-right: 15px !important;
+        }
+
+        .ql-formats button {
+            width: 28px;
+            height: 28px;
+        }
+
+        /* 编辑器下拉菜单样式 */
+        .ql-picker {
+            height: 28px !important;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .editor-container {
+                margin: 0 -1rem;
+                border-radius: 0;
+            }
+            
+            #toolbar {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+            
+            .ql-formats {
+                margin-right: 5px !important;
+            }
+        }
+
+        /* 标签相关样式 */
+        .tags-container {
+            margin-top: 0.5rem;
+        }
+
+        .tags-suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+
+        .tag-suggestion {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: #e9ecef;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tag-suggestion:hover {
+            background: #dee2e6;
+        }
+
+        .selected-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            min-height: 38px;
+            padding: 0.3rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .selected-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.3rem 0.8rem;
+            background: #22577E;
+            color: white;
+            border-radius: 4px;
+        }
+
+        .selected-tag .remove-tag {
+            cursor: pointer;
+            opacity: 0.8;
+        }
+
+        .selected-tag .remove-tag:hover {
+            opacity: 1;
+        }
+
+        #tagInput {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+        }
     </style>
 </head>
 <body>
@@ -76,6 +212,7 @@
                                 <option value="reviews">游艇评测</option>
                                 <option value="shows">展会动态</option>
                                 <option value="lifestyle">游艇生活</option>
+                                <option value="newproduct">新品发布</option>
                             </select>
                         </div>
 
@@ -85,13 +222,61 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="tags">标签（用逗号分隔）</label>
-                            <input type="text" id="tags" name="tags" placeholder="例如: 游艇,迪拜,海上活动">
+                            <label for="tags">标签</label>
+                            <div class="tags-container">
+                                <div class="tags-suggestions">
+                                    <span class="tag-suggestion" data-tag="迪拜">迪拜</span>
+                                    <span class="tag-suggestion" data-tag="游艇展">游艇展</span>
+                                    <span class="tag-suggestion" data-tag="迪拜游艇">迪拜游艇</span>
+                                    <span class="tag-suggestion" data-tag="Gulfcraft">Gulfcraft</span>
+                                    <span class="tag-suggestion" data-tag="超级游艇">超级游艇</span>
+                                    <span class="tag-suggestion" data-tag="superyacht">superyacht</span>
+                                    <span class="tag-suggestion" data-tag="游艇销售">游艇销售</span>
+                                    <span class="tag-suggestion" data-tag="探险游艇">探险游艇</span>
+                                    <span class="tag-suggestion" data-tag="巨型游艇">巨型游艇</span>
+                                    <span class="tag-suggestion" data-tag="极地考察">极地考察</span>
+                                    <span class="tag-suggestion" data-tag="游艇租赁">游艇租赁</span>
+                                </div>
+                                <div class="selected-tags"></div>
+                                <input type="text" id="tagInput" placeholder="输入新标签，按回车添加">
+                                <input type="hidden" id="tags" name="tags">
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <label for="content">文章内容</label>
-                            <div id="editor"></div>
+                            <div class="editor-container">
+                                <!-- Quill 编辑器工具栏 -->
+                                <div id="toolbar">
+                                    <span class="ql-formats">
+                                        <select class="ql-header">
+                                            <option value="1">标题1</option>
+                                            <option value="2">标题2</option>
+                                            <option value="3">标题3</option>
+                                            <option selected>正文</option>
+                                        </select>
+                                    </span>
+                                    <span class="ql-formats">
+                                        <button class="ql-bold"></button>
+                                        <button class="ql-italic"></button>
+                                        <button class="ql-underline"></button>
+                                        <button class="ql-strike"></button>
+                                    </span>
+                                    <span class="ql-formats">
+                                        <button class="ql-list" value="ordered"></button>
+                                        <button class="ql-list" value="bullet"></button>
+                                    </span>
+                                    <span class="ql-formats">
+                                        <button class="ql-link"></button>
+                                        <button class="ql-image"></button>
+                                    </span>
+                                    <span class="ql-formats">
+                                        <button class="ql-clean"></button>
+                                    </span>
+                                </div>
+                                <!-- 编辑器内容区域 -->
+                                <div id="editor"></div>
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -116,25 +301,94 @@
         let quill;
         document.addEventListener('DOMContentLoaded', () => {
             quill = new Quill('#editor', {
-                theme: 'snow',
                 modules: {
-                    toolbar: [
-                        [{ 'header': [1, 2, 3, false] }],
-                        ['bold', 'italic', 'underline', 'strike'],
-                        [{ 'color': [] }, { 'background': [] }],
-                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                        [{ 'align': [] }],
-                        ['link', 'image'],
-                        ['clean']
-                    ]
+                    toolbar: '#toolbar',
+                    clipboard: {
+                        matchVisual: false
+                    }
                 },
+                theme: 'snow',
                 placeholder: '请输入文章内容...'
+            });
+
+            // 禁用编辑器的自动检查
+            quill.root.setAttribute('spellcheck', false);
+            
+            // 设置编辑器的内容类型
+            quill.root.setAttribute('contenteditable', 'true');
+            quill.root.setAttribute('data-gramm', 'false');
+
+            // 当编辑器内容改变时，更新隐藏的input
+            quill.on('text-change', function() {
+                document.getElementById('content').value = quill.root.innerHTML;
             });
         });
 
-        // 当编辑器内容改变时，更新隐藏的input
-        quill.on('text-change', function() {
-            document.getElementById('content').value = quill.root.innerHTML;
+        // 标签管理
+        document.addEventListener('DOMContentLoaded', () => {
+            const tagInput = document.getElementById('tagInput');
+            const selectedTags = document.querySelector('.selected-tags');
+            const tagsInput = document.getElementById('tags');
+            const tagSuggestions = document.querySelectorAll('.tag-suggestion');
+
+            // 存储已选择的标签
+            let selectedTagsArray = [];
+
+            // 更新隐藏的标签输入框的值
+            function updateTagsInput() {
+                tagsInput.value = selectedTagsArray.join(',');
+            }
+
+            // 添加标签
+            function addTag(tagText) {
+                tagText = tagText.trim();
+                if (tagText && !selectedTagsArray.includes(tagText)) {
+                    selectedTagsArray.push(tagText);
+                    const tagElement = document.createElement('span');
+                    tagElement.className = 'selected-tag';
+                    tagElement.innerHTML = `
+                        ${tagText}
+                        <span class="remove-tag" onclick="removeTag(this, '${tagText}')">&times;</span>
+                    `;
+                    selectedTags.appendChild(tagElement);
+                    updateTagsInput();
+                }
+            }
+
+            // 删除标签
+            window.removeTag = function(element, tagText) {
+                selectedTagsArray = selectedTagsArray.filter(tag => tag !== tagText);
+                element.parentElement.remove();
+                updateTagsInput();
+            };
+
+            // 处理输入框的回车事件
+            tagInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const tagText = tagInput.value.trim();
+                    if (tagText) {
+                        addTag(tagText);
+                        tagInput.value = '';
+                    }
+                }
+            });
+
+            // 处理预设标签的点击事件
+            tagSuggestions.forEach(tag => {
+                tag.addEventListener('click', () => {
+                    addTag(tag.dataset.tag);
+                });
+            });
+
+            // 编辑文章时加载已有标签
+            window.loadExistingTags = function(tags) {
+                selectedTags.innerHTML = '';
+                selectedTagsArray = [];
+                if (tags && tags.length) {
+                    tags.forEach(tag => addTag(tag));
+                }
+            };
         });
     </script>
 </body>

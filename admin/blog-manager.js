@@ -1,5 +1,11 @@
 class BlogManager {
     constructor() {
+        // 添加登录检查
+        if (!this.checkLogin()) {
+            window.location.href = '../admin-login.html';
+            return;
+        }
+
         try {
             // Firebase 配置
             const firebaseConfig = {
@@ -96,31 +102,27 @@ class BlogManager {
             const docRef = await this.articlesRef.add(article);
             console.log('文章内容已保存，ID:', docRef.id);
 
-            // 如果有图片，单独处理
+            // 处理图片上传
             if (imageFile) {
-                try {
-                    // 创建唯一的文件路径
-                    const timestamp = Date.now();
-                    const filename = `${timestamp}_${imageFile.name}`;
-                    const storageRef = firebase.storage().ref();
-                    const fileRef = storageRef.child(`images/${filename}`);
+                // 压缩图片
+                const compressedFile = await this.compressImage(imageFile);
+                
+                // 创建唯一的文件路径
+                const timestamp = Date.now();
+                const filename = `${timestamp}_${imageFile.name}`;
+                const storageRef = firebase.storage().ref();
+                const fileRef = storageRef.child(`images/${filename}`);
 
-                    // 上传文件
-                    await fileRef.put(imageFile);
-                    
-                    // 获取文件URL
-                    const imageUrl = await fileRef.getDownloadURL();
-                    
-                    // 更新文章记录，添加图片URL
-                    await docRef.update({
-                        image: imageUrl
-                    });
-                    
-                    console.log('图片上传成功');
-                } catch (error) {
-                    console.error('图片上传失败:', error);
-                    alert('文章已保存，但图片上传失败。您可以稍后编辑文章重新上传图片。');
-                }
+                // 上传压缩后的图片
+                await fileRef.put(compressedFile);
+                
+                // 获取文件URL
+                const imageUrl = await fileRef.getDownloadURL();
+                
+                // 更新文章记录
+                await docRef.update({
+                    image: imageUrl
+                });
             }
 
             alert('文章保存成功！');
@@ -181,6 +183,34 @@ class BlogManager {
         };
         return categories[category] || category;
     }
+
+    // 添加图片压缩方法
+    async compressImage(file) {
+        return new Promise((resolve, reject) => {
+            new Compressor(file, {
+                quality: 0.8,
+                maxWidth: 1920,
+                maxHeight: 1080,
+                success(result) {
+                    resolve(result);
+                },
+                error(err) {
+                    reject(err);
+                },
+            });
+        });
+    }
+
+    // 添加登录检查方法
+    checkLogin() {
+        return sessionStorage.getItem('adminLoggedIn') === 'true';
+    }
+
+    // 添加登出方法
+    logout() {
+        sessionStorage.removeItem('adminLoggedIn');
+        window.location.href = '../admin-login.html';
+    }
 }
 
 // 初始化
@@ -233,7 +263,9 @@ async function editArticle(articleId) {
         form.title.value = article.title;
         form.category.value = article.category;
         form.source.value = article.source || '';
-        form.tags.value = article.tags ? article.tags.join(', ') : '';
+        
+        // 加载标签
+        window.loadExistingTags(article.tags || []);
         
         // 设置编辑器内容
         quill.root.innerHTML = article.content;

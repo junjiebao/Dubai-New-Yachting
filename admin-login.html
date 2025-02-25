@@ -96,13 +96,13 @@
         function handleLogin(event) {
             event.preventDefault();
             const password = document.getElementById('password').value;
-            const correctPassword = 'NewYachting@8837';
+            const correctPassword = 'New@8837';
             const errorMessage = document.getElementById('errorMessage');
             
             if (password === correctPassword) {
                 // 登录成功，保存登录状态并跳转
                 sessionStorage.setItem('adminLoggedIn', 'true');
-                window.location.href = 'file:///D:/NewYachtingFZE/admin/blog-manage.html';
+                window.location.href = 'admin/blog-manage.html';
             } else {
                 // 显示错误信息
                 errorMessage.style.display = 'block';
@@ -113,7 +113,7 @@
 
         // 检查是否已登录
         if (sessionStorage.getItem('adminLoggedIn') === 'true') {
-            window.location.href = 'file:///D:/NewYachtingFZE/admin/blog-manage.html';
+            window.location.href = 'admin/blog-manage.html';
         }
     </script>
 </body>

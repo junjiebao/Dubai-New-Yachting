@@ -702,27 +702,56 @@ footer a:hover {
 }
 
 .blog-card {
+    text-decoration: none;
+    color: inherit;
     background: white;
     border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .blog-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
 
-.blog-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+.blog-card .article-content {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
-.blog-content {
-    padding: 1rem;
+.blog-card h2 {
+    color: #22577E;
+    margin: 0.5rem 0;
+    font-size: 1.4rem;
+    line-height: 1.4;
+}
+
+.blog-card .category {
+    color: #666;
+    font-size: 0.9rem;
+    background: #f5f5f5;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.blog-card .article-date {
+    color: #999;
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+}
+
+.blog-card p {
+    color: #666;
+    margin: 0;
+    line-height: 1.6;
 }
 
 /* 移动端适配 */
@@ -1723,4 +1752,122 @@ input, select, textarea {
         height: 40px;
         font-size: 20px;
     }
+}
+
+/* 微信二维码弹窗样式补充 */
+.modal-content {
+    position: relative;
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    width: 300px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.wechat-id {
+    margin-top: 10px;
+    color: #333;
+    font-size: 14px;
+}
+
+/* 复制成功提示样式 */
+.copy-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-size: 14px;
+    z-index: 2000;
+    animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translate(-50%, 20px); }
+    10% { opacity: 1; transform: translate(-50%, 0); }
+    90% { opacity: 1; transform: translate(-50%, 0); }
+    100% { opacity: 0; transform: translate(-50%, -20px); }
+}
+
+/* 微信ID样式 */
+.wechat-id {
+    margin-top: 15px;
+    padding: 10px;
+    background: #f5f5f5;
+    border-radius: 4px;
+    color: #333;
+    font-size: 14px;
+    -webkit-user-select: all;  /* Safari 支持 */
+    user-select: all;
+    cursor: pointer;
+}
+
+/* 邮件链接样式 */
+.email-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.email-link:hover {
+    color: #22577E;
+    text-decoration: underline;
+}
+
+/* 确保邮件链接在移动端也有合适的点击区域 */
+@media (max-width: 768px) {
+    .email-link {
+        display: inline-block;
+        padding: 2px 0;
+    }
+    
+    .email {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .email i {
+        margin-bottom: 5px;
+    }
+}
+
+/* 文章图片容器样式 */
+.article-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    background: #f5f5f5;
+}
+
+.article-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.no-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f5;
+    color: #ccc;
+}
+
+.no-image i {
+    font-size: 2rem;
+}
+
+/* 确保图片在卡片中正确显示 */
+.blog-card .article-image {
+    flex: 0 0 200px;
 }

@@ -236,6 +236,7 @@ class BlogManager {
 
     getCategoryName(category) {
         const categories = {
+            newproduct: '新品发布',
             news: '行业新闻',
             reviews: '游艇评测',
             shows: '展会动态',

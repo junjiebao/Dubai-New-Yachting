@@ -4,6 +4,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileNavToggle = nav.querySelector('.mobile-nav-toggle');
     const navLinks = nav.querySelector('.nav-links');
     
+    // 修改移动端菜单按钮的内容
+    if (mobileNavToggle) {
+        // 使用 Font Awesome 图标
+        mobileNavToggle.innerHTML = '<i class="fas fa-bars"></i>';
+    }
+
     // 为所有导航链接添加点击事件
     navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', (e) => {
@@ -41,16 +47,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // 切换导航菜单的显示状态
             const visibility = navLinks.getAttribute('data-visible');
             
-            if (visibility === 'false') {
+            if (visibility === 'false' || !visibility) {
                 navLinks.setAttribute('data-visible', 'true');
-                mobileNavToggle.classList.add('active');
                 navLinks.classList.add('active');
-                mobileNavToggle.setAttribute('aria-expanded', 'true');
             } else {
                 navLinks.setAttribute('data-visible', 'false');
-                mobileNavToggle.classList.remove('active');
                 navLinks.classList.remove('active');
-                mobileNavToggle.setAttribute('aria-expanded', 'false');
             }
         });
     }

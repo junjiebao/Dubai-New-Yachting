@@ -91,17 +91,17 @@ class YachtManager {
             },
             {
                 id: 5,
-                name: '2024 KING BENJI (价格更新)',
+                name: '2024 KING BENJI',
                 brand: 'Dunya Yachts',
                 length: '46.70',
-                price: 39500000,
-                condition: 'used',
+                price: 45000000,
+                condition: 'new',
                 year: 2024,
                 description: '这艘名为KING BENJI的Dunya Yachts豪华探险游艇建造于2024年，外观设计师为Gregory C. Marshall Naval Architect，内部装潢由Design Unlimited设计。',
                 image: 'images/KING BENJI.jpg',
                 specs: {
                     beam: '8.88m',
-                    speed: '14 kn',
+                    speed: '15 kn',
                     tonnage: '491',
                     guests: 12,
                     crew: 2

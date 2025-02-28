@@ -17,6 +17,8 @@ class BlogManager {
         this.articlesRef = this.db.collection('articles');
         this.articles = [];
         this.currentCategory = 'all';
+        this.articlesPerPage = 9; // 每页显示9篇文章
+        this.currentPage = 1;
         this.init();
     }
 
@@ -207,7 +209,15 @@ class BlogManager {
 
     renderArticles(articles) {
         const container = document.querySelector('.blog-grid');
-        container.innerHTML = articles.map(article => {
+        const totalPages = Math.ceil(articles.length / this.articlesPerPage);
+        
+        // 计算当前页的文章
+        const startIndex = (this.currentPage - 1) * this.articlesPerPage;
+        const endIndex = startIndex + this.articlesPerPage;
+        const pageArticles = articles.slice(startIndex, endIndex);
+        
+        // 渲染文章列表
+        container.innerHTML = pageArticles.map(article => {
             const date = new Date(article.date).toLocaleDateString('zh-CN');
             let imageUrl = article.image;
             if (!imageUrl) {
@@ -232,10 +242,14 @@ class BlogManager {
                 </a>
             `;
         }).join('');
+        
+        // 更新分页控件
+        this.renderPagination(totalPages);
     }
 
     getCategoryName(category) {
         const categories = {
+            newlisting: '最新挂牌',
             newproduct: '新品发布',
             news: '行业新闻',
             reviews: '游艇评测',
@@ -312,6 +326,51 @@ class BlogManager {
                 alert('文章迁移失败，请检查控制台获取详细信息');
             }
         }
+    }
+
+    renderPagination(totalPages) {
+        const pagination = document.querySelector('.pagination');
+        let html = `
+            <button class="page-btn prev" ${this.currentPage === 1 ? 'disabled' : ''}>
+                &lt; 上一页
+            </button>
+        `;
+        
+        // 生成页码按钮
+        for (let i = 1; i <= totalPages; i++) {
+            html += `
+                <span class="page-number ${i === this.currentPage ? 'active' : ''}" 
+                      data-page="${i}">${i}</span>
+            `;
+        }
+        
+        html += `
+            <button class="page-btn next" ${this.currentPage === totalPages ? 'disabled' : ''}>
+                下一页 &gt;
+            </button>
+        `;
+        
+        pagination.innerHTML = html;
+        
+        // 绑定分页事件
+        this.bindPaginationEvents();
+    }
+
+    bindPaginationEvents() {
+        const pagination = document.querySelector('.pagination');
+        
+        pagination.addEventListener('click', (e) => {
+            if (e.target.classList.contains('prev') && this.currentPage > 1) {
+                this.currentPage--;
+                this.filterArticles(this.currentCategory);
+            } else if (e.target.classList.contains('next')) {
+                this.currentPage++;
+                this.filterArticles(this.currentCategory);
+            } else if (e.target.classList.contains('page-number')) {
+                this.currentPage = parseInt(e.target.dataset.page);
+                this.filterArticles(this.currentCategory);
+            }
+        });
     }
 }
 

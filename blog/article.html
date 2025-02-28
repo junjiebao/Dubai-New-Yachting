@@ -155,6 +155,13 @@
             }
         }
     </style>
+    <meta property="og:title" content="文章标题 - 迪拜新游艇">
+    <meta property="og:description" content="文章描述">
+    <meta property="og:image" content="文章图片URL">
+    <meta property="og:url" content="当前文章URL">
+    <meta itemprop="name" content="文章标题 - 迪拜新游艇">
+    <meta itemprop="description" content="文章描述">
+    <meta itemprop="image" content="文章图片URL">
 </head>
 <body>
     <header>
@@ -267,6 +274,16 @@
                 // 设置页面标题
                 document.title = `${article.title} - 迪拜新游艇`;
                 
+                // 更新微信分享的 meta 标签
+                document.querySelector('meta[property="og:title"]').setAttribute('content', `${article.title} - 迪拜新游艇`);
+                document.querySelector('meta[property="og:description"]').setAttribute('content', getExcerpt(article.content));
+                document.querySelector('meta[property="og:image"]').setAttribute('content', article.image || '默认图片URL');
+                document.querySelector('meta[property="og:url"]').setAttribute('content', window.location.href);
+                
+                document.querySelector('meta[itemprop="name"]').setAttribute('content', `${article.title} - 迪拜新游艇`);
+                document.querySelector('meta[itemprop="description"]').setAttribute('content', getExcerpt(article.content));
+                document.querySelector('meta[itemprop="image"]').setAttribute('content', article.image || '默认图片URL');
+                
                 // 填充文章内容
                 document.querySelector('.article-title').textContent = article.title;
                 document.querySelector('.article-date span').textContent = 
@@ -318,6 +335,11 @@
                 lifestyle: '游艇生活'
             };
             return categories[category] || category;
+        }
+
+        function getExcerpt(content) {
+            // Implement your logic to extract an excerpt from the content
+            return content.slice(0, 200); // Example: first 200 characters
         }
 
         // 分享功能

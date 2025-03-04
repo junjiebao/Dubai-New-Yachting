@@ -20,6 +20,7 @@ class BlogManager {
         this.articlesPerPage = 9; // 每页显示9篇文章
         this.currentPage = 1;
         this.init();
+        this.initCounters();
     }
 
     async init() {
@@ -371,6 +372,37 @@ class BlogManager {
                 this.filterArticles(this.currentCategory);
             }
         });
+    }
+
+    async initCounters() {
+        try {
+            // 获取页面浏览量
+            const pageViews = parseInt(localStorage.getItem('pageViews') || '0') + 1;
+            localStorage.setItem('pageViews', pageViews.toString());
+            
+            // 获取总阅读量
+            const totalReads = await this.getTotalReads();
+            
+            // 更新显示
+            document.getElementById('pageViews').textContent = pageViews.toLocaleString();
+            document.getElementById('totalReads').textContent = totalReads.toLocaleString();
+        } catch (error) {
+            console.error('初始化计数器失败:', error);
+        }
+    }
+
+    async getTotalReads() {
+        try {
+            const snapshot = await this.db.collection('articles').get();
+            let total = 0;
+            snapshot.forEach(doc => {
+                total += doc.data().views || 0;
+            });
+            return total;
+        } catch (error) {
+            console.error('获取总阅读量失败:', error);
+            return 0;
+        }
     }
 }
 

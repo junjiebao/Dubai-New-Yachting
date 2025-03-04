@@ -878,8 +878,19 @@
     </main>
 
     <footer>
-        <p>&copy; 2022-2025 迪拜新游艇 New Yachting. All rights reserved. <a href="admin-login.html">管理入口</a></p>
-  </footer>
+        <section id="contact" class="contact-section">
+            <!-- ... 现有的联系方式内容 ... -->
+        </section>
+        <div class="footer-bottom">
+            <div class="footer-spacer"></div><!-- 左侧空div保持对称 -->
+            <p class="copyright">&copy; 2022-2025 迪拜新游艇 New Yachting. All rights reserved.</p>
+            <div class="stats-counter">
+                <small>
+                    <span id="pageViews">0</span> 次浏览
+                </small>
+            </div>
+        </div>
+    </footer>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
@@ -1057,6 +1068,18 @@
     document.addEventListener('DOMContentLoaded', () => {
         displayYachts(yachts, 'randomYachts');  // 显示销售游艇
         displayCharterYachts(charterYachts, 'charterYachts');  // 显示租赁游艇
+    });
+    </script>
+
+    <!-- 在body结束标签前添加计数器脚本 -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 获取页面浏览量
+        const pageViews = parseInt(localStorage.getItem('indexPageViews') || '0') + 1;
+        localStorage.setItem('indexPageViews', pageViews.toString());
+        
+        // 更新显示
+        document.getElementById('pageViews').textContent = pageViews.toLocaleString();
     });
     </script>
 </body>

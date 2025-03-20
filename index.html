@@ -577,20 +577,7 @@
 </header>
 
     <main>
-        <!-- 关于我们部分 -->
-        <section id="about" class="about-section">
-            <h2>关于我们</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>迪拜新游艇（New Yachting LLC）是一家专业的游艇服务公司，总部位于迪拜。我们提供全方位的游艇服务，包括游艇销售、租赁、管理和维护等。</p>
-                    <p>我们的团队拥有丰富的游艇行业经验，致力于为客户提供最优质的服务和最专业的建议。</p>
-      </div>
-
-        </div>
-      </div>
-        </section>
-
-             <!-- 游艇购买部分 -->
+        <!-- 游艇购买部分 -->
         <section id="buy" class="yacht-section">
             <h2>游艇购买</h2>
             <p class="section-desc">为您提供全球顶级品牌游艇，专业的购买建议和完善的售后服务</p>
@@ -809,78 +796,86 @@
             <div class="section-more">
                 <a href="blog.html" class="btn">查看更多资讯</a>
             </div>
-  </section>
+        </section>
+
+        <!-- 关于我们部分 -->
+        <section id="about" class="about-section">
+            <h2>关于我们</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>迪拜新游艇（New Yachting LLC）是一家专业的游艇服务公司，总部位于迪拜。我们提供全方位的游艇服务，包括游艇销售、租赁、管理和维护等。</p>
+                    <p>我们的团队拥有丰富的游艇行业经验，致力于为客户提供最优质的服务和最专业的建议。</p>
+                </div>
+            </div>
+        </section>
 
         <!-- 联系我们部分 -->
-    <section id="contact" class="contact-section">
-      <h2>联系我们</h2>
-      <div class="contact-cards">
-        <div class="contact-card">
-            <i class="fas fa-phone"></i>
-            <div class="phone-list">
-                <span class="phone-item">
-                    <i class="fab fa-whatsapp"></i>
-                    +971 56 101 8837 (UAE with WhatsApp)
-                </span>
-                <span class="phone-item">
+        <section id="contact" class="contact-section">
+            <h2>联系我们</h2>
+            <div class="contact-cards">
+                <div class="contact-card">
                     <i class="fas fa-phone"></i>
-                    +968 9788 0718 (Oman)
-                </span>
-                <span class="phone-item">
-          <i class="fas fa-phone"></i>
-                    +86 136 0181 9937 (China)
-                </span>
+                    <div class="phone-list">
+                        <span class="phone-item">
+                            <i class="fab fa-whatsapp"></i>
+                            +971 56 101 8837 (UAE with WhatsApp)
+                        </span>
+                        <span class="phone-item">
+                            <i class="fas fa-phone"></i>
+                            +968 9788 0718 (Oman)
+                        </span>
+                        <span class="phone-item">
+                            <i class="fas fa-phone"></i>
+                            +86 136 0181 9937 (China)
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <div class="email-list">
+                        <span class="email-item">
+                            <i class="fas fa-envelope"></i>
+                            Info@xinyouting.com
+                        </span>
+                        <span class="email-item">
+                            <i class="fas fa-envelope"></i>
+                            Sales@xinyouting.com
+                        </span>
+                        <span class="email-item">
+                            <i class="fas fa-envelope"></i>
+                            Charter@xinyouting.com
+                        </span>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Dubai Harbor, Dubai Marina, Dubai, United Arab Emirates</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 添加固定位置的社交媒体按钮 -->
+        <div class="social-buttons">
+            <a href="javascript:void(0)" class="social-button wechat" onclick="showWeChatQR()">
+                <i class="fab fa-weixin"></i>
+            </a>
+            <a href="https://wa.me/971561018837" target="_blank" rel="noopener noreferrer" class="social-button whatsapp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+
+        <!-- 微信二维码弹窗 -->
+        <div id="wechatModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeWeChatQR()">&times;</span>
+                <img src="images/WeChat QR.jpg" alt="WeChat QR Code">
             </div>
         </div>
-        
-        <div class="contact-card">
-            <i class="fas fa-envelope"></i>
-            <div class="email-list">
-                <span class="email-item">
-                    <i class="fas fa-envelope"></i>
-                    Info@xinyouting.com
-                </span>
-                <span class="email-item">
-                    <i class="fas fa-envelope"></i>
-                    Sales@xinyouting.com
-                </span>
-                <span class="email-item">
-          <i class="fas fa-envelope"></i>
-                    Charter@xinyouting.com
-                </span>
-            </div>
-        </div>
-
-        <div class="contact-card">
-          <i class="fas fa-map-marker-alt"></i>
-            <p>Dubai Harbor, Dubai Marina, Dubai, United Arab Emirates</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 添加固定位置的社交媒体按钮 -->
-    <div class="social-buttons">
-        <a href="javascript:void(0)" class="social-button wechat" onclick="showWeChatQR()">
-            <i class="fab fa-weixin"></i>
-        </a>
-        <a href="https://wa.me/971561018837" target="_blank" rel="noopener noreferrer" class="social-button whatsapp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-    </div>
-
-    <!-- 微信二维码弹窗 -->
-    <div id="wechatModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeWeChatQR()">&times;</span>
-            <img src="images/WeChat QR.jpg" alt="WeChat QR Code">
-        </div>
-    </div>
     </main>
 
     <footer>
-        <section id="contact" class="contact-section">
-            <!-- ... 现有的联系方式内容 ... -->
-        </section>
         <div class="footer-bottom">
             <div class="footer-spacer"></div><!-- 左侧空div保持对称 -->
             <p class="copyright">&copy; 2022-2025 迪拜新游艇 New Yachting. All rights reserved.</p>

@@ -17,6 +17,10 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
     <script src="blog.js" defer></script>
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="迪拜新游艇">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_CN">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -31,6 +35,21 @@
                 "@type": "ImageObject",
                 "url": "https://www.xinyouting.com/images/blue logo only.png"
             }
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "迪拜新游艇",
+        "alternateName": "New Yachting LLC",
+        "url": "https://www.xinyouting.com",
+        "logo": "images/blue logo only.png",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+971-56-101-8837",
+            "contactType": "customer service"
         }
     }
     </script>
@@ -126,7 +145,59 @@
     .article-content .btn:hover {
         background: #1a4563;
     }
+
+    /* 建议添加以下移动端样式优化 */
+    @media (max-width: 768px) {
+        /* 导航菜单优化 */
+        .nav-links {
+            padding: 1rem;
+        }
+        
+        /* 游艇卡片优化 */
+        .yacht-card {
+            margin: 0.5rem 0;
+        }
+        
+        /* 联系卡片优化 */
+        .contact-cards {
+            padding: 1rem;
+        }
+        
+        /* 关于我们部分优化 */
+        .about-section {
+            padding: 2rem 1rem;
+        }
+        
+        /* 页脚优化 */
+        .footer-bottom {
+            padding: 1rem;
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        /* 社交按钮位置优化 */
+        .social-buttons {
+            bottom: 20px;
+            top: auto;
+            right: 20px;
+            transform: none;
+        }
+    }
+
+    /* 平板设备优化 */
+    @media (min-width: 769px) and (max-width: 1024px) {
+        .yacht-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .contact-cards {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
     </style>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; img-src 'self' https: data:; style-src 'self' 'unsafe-inline' https:; script-src 'self' https:;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
 </head>
 <body>
     <!-- 使用与主页相同的导航栏 -->
@@ -221,5 +292,36 @@
         </div>
     </footer>
     <script src="share.js"></script>
+    <script>
+    // 添加页面加载状态指示
+    document.addEventListener('DOMContentLoaded', () => {
+        const loader = document.createElement('div');
+        loader.className = 'page-loader';
+        document.body.appendChild(loader);
+        
+        window.addEventListener('load', () => {
+            loader.style.display = 'none';
+        });
+    });
+
+    // 优化图片加载失败处理
+    function handleImageError(img) {
+        img.onerror = null;
+        img.src = 'images/placeholder.jpg';
+    }
+
+    // 优化微信二维码显示
+    function showWeChatQR() {
+        const modal = document.getElementById('wechatModal');
+        modal.style.display = 'block';
+        
+        // 添加点击外部关闭功能
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeWeChatQR();
+            }
+        });
+    }
+    </script>
 </body>
 </html> 

@@ -1,17 +1,15 @@
 class YachtManager {
     constructor() {
         this.yachts = [];
-        this.filteredYachts = [];
-        this.init();
-    }
-
-    async init() {
-        await this.loadYachts();
+        this.loadYachts();
         this.bindEvents();
-        this.renderYachts(this.yachts);
+        this.renderYachts();
     }
 
     async loadYachts() {
+        // 清除localStorage中的旧数据
+        localStorage.removeItem('buyYachts');
+        
         // 从localStorage加载游艇数据
         this.yachts = JSON.parse(localStorage.getItem('buyYachts')) || [];
         
@@ -26,7 +24,7 @@ class YachtManager {
                 condition: 'used',
                 year: 2014,
                 description: '豪华43米超级游艇，抢眼配色，内饰豪华',
-                image: 'images/yahct1.jpg',
+                image: 'images/yacht1.jpg',
                 specs: {
                     beam: '8.6m',
                     speed: '16 kn',
@@ -77,6 +75,7 @@ class YachtManager {
                 brand: 'Numarine',
                 length: '32.63',
                 price: 13900000,
+                currency: 'EUR',
                 condition: 'new',
                 year: 2026,
                 description: '2026年交付的32XP游艇，土耳其建造的探险游艇。',
@@ -131,6 +130,7 @@ class YachtManager {
                 brand: 'Damen',
                 length: '53.25',
                 price: 28000000,
+                currency: 'EUR',
                 condition: 'new',
                 year: 2026,
                 description: '53米超级游艇支援艇，她不仅能够满足普通游艇的豪华休闲生活方式，还能支持多元化的活动需求。',
@@ -148,7 +148,7 @@ class YachtManager {
                 name: '2027 Nomad 101',
                 brand: 'Nomad',
                 length: '30.34',
-                price: 9000000,
+                price: 9500000,
                 condition: 'new',
                 year: 2027,
                 description: '30米休闲长航超级游艇，支持私人定制内饰，最具性价比的三层超艇选择。',
@@ -163,20 +163,21 @@ class YachtManager {
             },
             {
                 id: 9,
-                name: '2001 M/Y Medusa Azimut Jumbo 100',
+                name: '2024 Azimut 30m Magellano white',
                 brand: 'Azimut',
-                length: '30.48',
-                price: 2100000,
-                condition: 'used',
-                year: 2001,
-                description: '30米Azimut超级游艇，具有商业租赁运营资质，停泊在迪拜游艇港，适合商业租赁运营。',
-                image: 'images/azimut jumbo 100 medusa.jpg',
+                length: '30',
+                price: 9600000,
+                currency: 'EUR',
+                condition: 'undelivered',
+                year: 2024,
+                description: '30米Azimut麦哲伦超级游艇，船东由于个人原因，此游艇未交付，仍旧在意大利船厂，适合私用或者商业租赁运营。',
+                image: 'images/2024-Azimut-Grande-Magellano-30M.jpg',
                 specs: {
-                    beam: '6.6m',
-                    speed: '23 kn',
-                    tonnage: '151',
-                    guests: 8,
-                    crew: 4
+                    beam: '7.06m',
+                    speed: '24 kn',
+                    tonnage: '136',
+                    guests: 12,
+                    cabin: 5
                 }
             },
             {
@@ -286,6 +287,25 @@ class YachtManager {
                     guests: 10,
                     crew: 7
                 }
+            },
+            {
+                id: 16,
+                name: '2025 Damen Xplorer 60',
+                brand: 'Damen',
+                length: '60',
+                price: 75000000,
+                currency: 'EUR',
+                condition: 'new',
+                year: 2025,
+                description: '这艘60米探险超级游艇将于2025年春季交付，配备混合动力推进系统。巡航范围达5000-6000海里，可在极地和热带水域自如航行。由Azure Yacht Design设计外观，H2 Yacht Design设计内饰，完美融合探险性能与奢华体验。',
+                image: 'images/Damen Xplorer 6001.jpg',
+                specs: {
+                    beam: '11.00m',
+                    speed: '14.5 kn',
+                    tonnage: '1160',
+                    guests: 12,
+                    crew: 16
+                }
             }
         ];
         
@@ -311,90 +331,94 @@ class YachtManager {
         const price = document.getElementById('price').value;
         const condition = document.getElementById('condition').value;
 
-        this.filteredYachts = this.yachts.filter(yacht => {
-            if (brand && yacht.brand !== brand) return false;
-            
-            if (length) {
-                const yachtLength = Number(yacht.length);
-                if (length.endsWith('+')) {
-                    const min = Number(length.replace('+', ''));
-                    if (yachtLength < min) return false;
+        let filteredYachts = this.yachts;
+
+        // 品牌筛选
+        if (brand) {
+            filteredYachts = filteredYachts.filter(yacht => yacht.brand === brand);
+        }
+
+        // 长度筛选
+        if (length) {
+            const [min, max] = length.split('-').map(Number);
+            filteredYachts = filteredYachts.filter(yacht => {
+                const yachtLength = parseFloat(yacht.length);
+                if (max) {
+                    return yachtLength >= min && yachtLength < max;
                 } else {
-                    const [min, max] = length.split('-').map(Number);
-                    if (yachtLength < min || yachtLength > max) return false;
+                    return yachtLength >= min;
                 }
-            }
+            });
+        }
 
-            if (price) {
-                const yachtPrice = yacht.price / 1000000;
-                if (price.endsWith('+')) {
-                    const min = Number(price.replace('+', ''));
-                    if (yachtPrice < min) return false;
+        // 价格筛选（单位：百万美元）
+        if (price) {
+            const [min, max] = price.split('-').map(Number);
+            filteredYachts = filteredYachts.filter(yacht => {
+                const yachtPrice = yacht.price / 1000000; // 转换为百万
+                if (max) {
+                    return yachtPrice >= min && yachtPrice < max;
                 } else {
-                    const [min, max] = price.split('-').map(Number);
-                    if (yachtPrice < min || yachtPrice > max) return false;
+                    return yachtPrice >= min;
                 }
-            }
+            });
+        }
 
-            if (condition && yacht.condition !== condition) return false;
+        // 状态筛选
+        if (condition) {
+            filteredYachts = filteredYachts.filter(yacht => {
+                // 处理特殊状态 "undelivered"
+                if (condition === 'new') {
+                    return yacht.condition === 'new' || yacht.condition === 'undelivered';
+                }
+                return yacht.condition === condition;
+            });
+        }
 
-            return true;
-        });
-
-        this.renderYachts(this.filteredYachts);
+        this.renderYachts(filteredYachts);
     }
 
-    renderYachts(yachts) {
+    renderYachts(yachts = this.yachts) {
         const container = document.querySelector('.yacht-grid');
         container.innerHTML = yachts.map(yacht => this.createYachtCard(yacht)).join('');
     }
 
-    createYachtCard(yacht) {
-        // 根据游艇ID获取对应的详情文档链接
-        const getDetailLink = (id) => {
-            const links = {
-                1: 'https://kdocs.cn/l/cuAeevjyTxru',
-                2: 'https://kdocs.cn/l/chcwgeaoMNTj',
-                3: 'https://kdocs.cn/l/cgVhqUJzkkVY',
-                4: 'https://kdocs.cn/l/cnweWbhQTAgQ',
-                5: 'https://kdocs.cn/l/cgAhUqSbjxfk',
-                6: 'https://kdocs.cn/l/ct8VAxyAFemg',
-                7: 'https://kdocs.cn/l/cbdV5HSct9zY',
-                8: 'https://kdocs.cn/l/cm7ZTMzMvxwe',
-                9: 'https://kdocs.cn/l/cis3TxxEWx1V',
-                10: 'https://kdocs.cn/l/ciuyfnsxmZMP',
-                11: 'https://kdocs.cn/l/cppu9DXqPwfn',
-                12: 'https://www.kdocs.cn/l/cnmWkssj2ucK',
-                13: 'https://kdocs.cn/l/cvEJwWzov1uM',
-                14: 'https://kdocs.cn/l/cpEjFe4ClvWh',
-                15: 'https://kdocs.cn/l/cnajy8A7PNON'
-            };
-            return yacht.detailLink || links[id] || '#';
-        };
+    formatPrice(price, currency = 'EUR') {
+        const formatter = new Intl.NumberFormat('de-DE', {
+            style: 'currency',
+            currency: currency,
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0
+        });
+        return formatter.format(price);
+    }
 
+    createYachtCard(yacht) {
         return `
             <div class="yacht-card">
-                <img src="${yacht.image || 'images/yacht1.jpg'}" alt="${yacht.name}" onerror="this.src='images/yacht1.jpg'" loading="lazy">
-                <h3>${yacht.name}</h3>
-                <div class="specs">
-                    <p><strong>长度:</strong> ${yacht.length} m</p>
-                    <p><strong>船宽:</strong> ${yacht.specs.beam}</p>
-                    <p><strong>最高速度:</strong> ${yacht.specs.speed}</p>
-                    <p><strong>总吨位:</strong> ${yacht.specs.tonnage}</p>
-                    <p><strong>载客人数:</strong> ${yacht.specs.guests}</p>
-                    <p><strong>交付年份:</strong> ${yacht.year}</p>
-                    <p><strong>船员数:</strong> ${yacht.specs.crew}</p>
-                </div>
-                <div class="description">${yacht.description}</div>
-                <div class="pricing">
-                    <p><strong>报价:</strong> ${yacht.price ? `$${yacht.price.toLocaleString()}` : '请咨询'}</p>
-                </div>
-                <div class="button-group">
-                    <button class="btn" onclick="copyAndRedirect()">联系我们</button>
-                    <a href="${getDetailLink(yacht.id)}" target="_blank" class="btn btn-secondary">查看详情</a>
+                <img src="${yacht.image}" alt="${yacht.name}" class="yacht-image">
+                <div class="yacht-info">
+                    <h3>${yacht.name}</h3>
+                    <p>长度: ${yacht.length}米</p>
+                    <p>价格: ${this.formatPrice(yacht.price, yacht.currency)}</p>
+                    <p>状态: ${this.getConditionText(yacht.condition)}</p>
+                    <p>年份: ${yacht.year}</p>
+                    <div class="yacht-buttons">
+                        <button onclick="contactUs('${yacht.name}')">联系我们</button>
+                        <button onclick="viewDetails(${yacht.id})">查看详情</button>
+                    </div>
                 </div>
             </div>
         `;
+    }
+
+    getConditionText(condition) {
+        const conditionMap = {
+            'new': '全新',
+            'used': '二手',
+            'undelivered': '未交付'
+        };
+        return conditionMap[condition] || condition;
     }
 }
 

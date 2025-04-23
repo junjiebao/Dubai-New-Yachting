@@ -425,4 +425,159 @@ class YachtManager {
 // 初始化
 document.addEventListener('DOMContentLoaded', () => {
     window.yachtManager = new YachtManager();
-}); 
+});
+
+// 查看详情功能
+function viewDetails(yachtId) {
+    // PDF文档链接映射
+    const pdfLinks = {
+        1: 'https://kdocs.cn/l/cuAeevjyTxru',
+        2: 'https://kdocs.cn/l/chcwgeaoMNTj',
+        3: 'https://kdocs.cn/l/cgVhqUJzkkVY',
+        4: 'https://kdocs.cn/l/cnweWbhQTAgQ',
+        5: 'https://kdocs.cn/l/cgAhUqSbjxfk',
+        6: 'https://kdocs.cn/l/ct8VAxyAFemg',
+        7: 'https://kdocs.cn/l/cbdV5HSct9zY',
+        8: 'https://kdocs.cn/l/cm7ZTMzMvxwe',
+        9: 'https://kdocs.cn/l/chAmnP9RO6Ca',
+        10: 'https://kdocs.cn/l/ciuyfnsxmZMP',
+        11: 'https://kdocs.cn/l/cppu9DXqPwfn',
+        12: 'https://www.kdocs.cn/l/cnmWkssj2ucK',
+        13: 'https://kdocs.cn/l/cvEJwWzov1uM',
+        14: 'https://kdocs.cn/l/cpEjFe4ClvWh',
+        15: 'https://kdocs.cn/l/cnajy8A7PNON',
+        16: 'https://kdocs.cn/l/chczjhojMv7K'
+    };
+
+    // 获取对应的PDF链接
+    const pdfLink = pdfLinks[yachtId];
+    
+    if (pdfLink) {
+        // 在新标签页中打开PDF文档
+        window.open(pdfLink, '_blank');
+    } else {
+        // 如果没有找到对应的PDF链接，则显示详情模态框
+        const yacht = window.yachtManager.yachts.find(y => y.id === yachtId);
+        if (!yacht) return;
+
+        // 构建详情内容
+        const detailContent = `
+            <div class="yacht-detail-modal">
+                <div class="yacht-detail-content">
+                    <h2>${yacht.name}</h2>
+                    <img src="${yacht.image}" alt="${yacht.name}" class="detail-image">
+                    <div class="detail-info">
+                        <div class="specs-section">
+                            <h3>基本参数</h3>
+                            <p><strong>品牌:</strong> ${yacht.brand}</p>
+                            <p><strong>长度:</strong> ${yacht.length}米</p>
+                            <p><strong>船宽:</strong> ${yacht.specs.beam}</p>
+                            <p><strong>最高速度:</strong> ${yacht.specs.speed}</p>
+                            <p><strong>总吨位:</strong> ${yacht.specs.tonnage}</p>
+                            <p><strong>载客人数:</strong> ${yacht.specs.guests}人</p>
+                            <p><strong>船员数:</strong> ${yacht.specs.crew}人</p>
+                            <p><strong>建造年份:</strong> ${yacht.year}</p>
+                            <p><strong>状态:</strong> ${window.yachtManager.getConditionText(yacht.condition)}</p>
+                            <p><strong>价格:</strong> ${window.yachtManager.formatPrice(yacht.price, yacht.currency)}</p>
+                        </div>
+                        <div class="description-section">
+                            <h3>游艇描述</h3>
+                            <p>${yacht.description}</p>
+                        </div>
+                        <div class="detail-actions">
+                            <button onclick="contactUs('${yacht.name}')" class="contact-btn">联系我们</button>
+                            <button onclick="closeDetails()" class="close-btn">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // 创建模态框
+        const modal = document.createElement('div');
+        modal.id = 'yacht-detail-modal';
+        modal.innerHTML = detailContent;
+        modal.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 20px;
+        `;
+
+        // 添加样式
+        const style = document.createElement('style');
+        style.textContent = `
+            .yacht-detail-content {
+                background: white;
+                padding: 20px;
+                border-radius: 8px;
+                max-width: 800px;
+                width: 90%;
+                max-height: 90vh;
+                overflow-y: auto;
+                position: relative;
+            }
+            .detail-image {
+                width: 100%;
+                height: auto;
+                max-height: 400px;
+                object-fit: cover;
+                border-radius: 4px;
+                margin: 10px 0;
+            }
+            .detail-info {
+                margin-top: 20px;
+            }
+            .specs-section, .description-section {
+                margin-bottom: 20px;
+            }
+            .detail-actions {
+                display: flex;
+                gap: 10px;
+                margin-top: 20px;
+            }
+            .contact-btn, .close-btn {
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+            .contact-btn {
+                background: #22577E;
+                color: white;
+            }
+            .close-btn {
+                background: #f5f5f5;
+                color: #333;
+            }
+        `;
+
+        document.head.appendChild(style);
+        document.body.appendChild(modal);
+    }
+}
+
+// 关闭详情模态框
+function closeDetails() {
+    const modal = document.getElementById('yacht-detail-modal');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+// 联系我们功能
+function contactUs(yachtName) {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+} 

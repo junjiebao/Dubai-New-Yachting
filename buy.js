@@ -108,10 +108,10 @@ class YachtManager {
             },
             {
                 id: 6,
-                name: '2018 Sunseeker 95 (最近有降价)',
+                name: '2018 Sunseeker 95',
                 brand: 'Sunseeker',
                 length: '28.07',
-                price: 6900000 to 5950000,
+                price: 5950000,
                 condition: 'used',
                 year: 2018,
                 description: '这艘2018年建造的Sunseeker 95游艇，内部装潢豪华，配备了两台MTU 12V 2000 M96L发动机。',
